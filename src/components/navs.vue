@@ -3,7 +3,7 @@
     <div class="usr_img">
         <img src="../assets/13.png" 
         alt="myworld" 
-        itle="welcome to myworld"
+        title="welcome to myworld"
         @click="tohost(0)" :class="{stys : sty == 0}">
     </div>
     <div class="nav">
