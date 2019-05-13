@@ -4,7 +4,7 @@
         <img src="../assets/13.png" 
         alt="myworld" 
         title="welcome to myworld"
-        @click="tohost(0)" :class="{stys : sty == 0}">
+        @click="tohost()">
         <div class="back_music">
             <audio class="mui" loop>
                 <source src="../assets/qing.mp3">
@@ -17,10 +17,22 @@
     </div>
     <div class="nav">
         <div class="nav_para">
-            <span @click="tohost(0)" :class="{stys : sty == 0}">总镖</span>
+            <!-- <span @click="tohost(0)" :class="{stys : sty == 0}">总镖</span>
             <span @click="totext(1)" :class="{stys : sty == 1}">文章</span>
-            <span @click="topoem(2)" :class="{stys : sty == 2}">辞海</span>
-            <span @click="tosome(3)" :class="{stys : sty == 3}">关于</span>
+            <span @click="topoem(2)" :class="{stys : sty == 2}">辞海</span> -->
+            <!-- <span @click="tosome(3)" :class="{stys : sty == 3}">关于</span> -->
+            <!-- <router-link :to="{path : 'some'}">
+                <span :class="{stys : sty == 'router-link-exact-active'}">关于</span>
+            </router-link> -->
+                <router-link :to="{path : '/'}">总镖</router-link>
+
+                <router-link :to="{path : 'text'}">文章</router-link>
+          
+                <router-link :to="{path : 'poem'}">辞海</router-link>
+          
+                <router-link :to="{path : 'some'}">关于</router-link>
+            
+            
         </div>
         <div class="nav_git">
             <span><a href="http://github.com/The-Dark-Knight6" target="_blank">Github</a></span>
@@ -51,11 +63,10 @@ export default {
               this.before_music = require('../assets/mi6us.png')
           }
       },
-      tohost(e){
+      tohost(){
           this.$router.push({
               path : './'
           })
-          this.sty = e
       },
       totext(e){
           this.$router.push({
@@ -85,7 +96,7 @@ export default {
     border-color: white;
     border-style: solid;
 }
-.stys{
+.router-link-exact-active{
     border-color: black !important;
     color: black !important;
 }
@@ -138,7 +149,9 @@ export default {
         border-top: #eef2f3 .03rem dotted;
         .nav_para{
             text-align: center;
-            span{
+            a{
+                -webkit-tap-highlight-color: transparent;
+                text-decoration: none;
                 display: inline-block;
                 font-size: .3rem;
                 color: #ccc;
