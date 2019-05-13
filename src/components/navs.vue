@@ -5,13 +5,22 @@
         alt="myworld" 
         title="welcome to myworld"
         @click="tohost(0)" :class="{stys : sty == 0}">
+        <div class="back_music">
+            <audio class="mui" loop>
+                <source src="../assets/qing.mp3">
+            </audio>
+            <div class="back_control">
+                <img :src="before_music" alt="muisic" class="music">
+                <span class="plays" @click="play_mu">play_music</span>
+            </div>
+        </div>
     </div>
     <div class="nav">
         <div class="nav_para">
             <span @click="tohost(0)" :class="{stys : sty == 0}">总镖</span>
-            <span @click="totext(1)" :class="{stys : sty == 1}">文渊阁</span>
-            <span @click="topoem(2)" :class="{stys : sty == 2}">寄情山水</span>
-            <span @click="tosome(3)" :class="{stys : sty == 3}">东厂</span>
+            <span @click="totext(1)" :class="{stys : sty == 1}">文章</span>
+            <span @click="topoem(2)" :class="{stys : sty == 2}">辞海</span>
+            <span @click="tosome(3)" :class="{stys : sty == 3}">关于</span>
         </div>
         <div class="nav_git">
             <span><a href="http://github.com/The-Dark-Knight6" target="_blank">Github</a></span>
@@ -24,14 +33,27 @@
 export default {
   data() {
       return{
-          sty : 0
+          sty : 0,
+          before_music : require('../assets/mi6us.png')
       }
   },
-  props : ['change'],
   methods : {
+      play_mu(){
+          var musi = document.querySelector('.mui')
+          var pla = document.querySelector('.plays')
+          if(pla.innerHTML === 'play_music'){
+              musi.play()
+              pla.innerHTML = 'pause_music'
+              this.before_music = require('../assets/mi02.gif')
+          }else{
+              musi.pause()
+              pla.innerHTML = 'play_music'
+              this.before_music = require('../assets/mi6us.png')
+          }
+      },
       tohost(e){
           this.$router.push({
-              path : './host'
+              path : './'
           })
           this.sty = e
       },
@@ -80,11 +102,30 @@ export default {
         background: white;
         text-align: center;
         padding: .2rem;
-            img{
+        position: relative;
+            >img{
                 width: 3rem;
                 &:hover{
                     cursor: pointer;
                     animation: 1.6s img_act;
+                }
+            }
+            .back_music{
+                position: absolute;
+                right: 0%;top:.2rem;
+                .back_control{
+                    *{
+                        vertical-align: middle;
+                    }
+                    .music{
+                        height: .5rem;
+                    } 
+                    >span{
+                        margin-right: .5rem;
+                        &:hover{
+                            cursor: pointer;
+                        }
+                    }
                 }
             }
     }

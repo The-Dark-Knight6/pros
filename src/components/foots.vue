@@ -1,12 +1,12 @@
 <template>
     <div class="foots">
-        <p class="desc">寄浮游于天地，渺沧海之一粟</p>
+        <p class="desc"> - - 寄浮游于天地，渺沧海之一粟 - - </p>
         <p class="tips">
            <span>Copyright ⓒ {{the_year}} 小付同学 版权所有</span>
             <img src="../assets/bg6.png" alt="backgournd_img">
            <span>粤ICP备15011178号-3</span>   
         </p>
-        <p class="times">北京时间：</p>
+        <p class="times"></p>
     </div>    
 </template>
 
@@ -22,9 +22,9 @@ export default {
    now(){
        var nowtime = new Date()
        var year = nowtime.getFullYear()
-       var month = nowtime.getMonth()
+       var month = nowtime.getMonth() + 1
        var day = nowtime.getDate()
-       document.querySelector('.times').innerHTML = 
+       document.querySelector('.times').innerHTML = '北京时间：' +
        year + '-' + month + '-' + day + ' ' + nowtime.toLocaleTimeString()
    },
   },

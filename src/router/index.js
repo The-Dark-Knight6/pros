@@ -12,10 +12,6 @@ export default new Router({
   routes: [
     {
       path : '/',
-      redirect : 'host'
-    },
-    {
-      path : '/host',
       name : 'host',
       component : host
     },
