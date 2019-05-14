@@ -46,7 +46,7 @@ $border_bor : .02rem dotted #6896a3;
             line-height: .5rem;
             margin: 0%;
             padding: 0 .3rem;
-            font-family: cursive;
+            font-family: '楷体';
             text-align: center;
         }
     }

@@ -22,6 +22,9 @@ body,html{
   padding: 0%;
   background: #f8faFa;
 }
+*{
+  font-size: 12px;
+}
 #views{
   margin: .2rem 1.2rem;
 }

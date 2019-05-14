@@ -41,15 +41,15 @@
 export default {
  mounted(){
      var map = new AMap.Map('container', {
-        zoom:14,//级别
+        zoom:12,//级别
         center: [114.122034,22.655371],//中心点坐标
     })
     var circleMarker = new AMap.CircleMarker({
         center: new AMap.LngLat(114.11755,22.65),  // 圆心位置
-        radius: 20, // 圆半径
+        radius: 14, // 圆半径
         fillColor: '#72adfb',   // 圆形填充颜色
         strokeColor: 'blue', // 描边颜色
-        strokeWeight: 3, // 描边宽度
+        strokeWeight: 1.5, // 描边宽度
     })
     map.add(circleMarker);
  }
