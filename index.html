@@ -5,6 +5,10 @@
     <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
     <!-- 此处图标格式需要ico，且需要放置于static目录下 -->
     <link rel="shortcut icon" href="./static/ico2.ico" /> 
+    <!-- 引入 高德地图 密匙 -->
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=f7602ccb5bbfc6d4883bff0c6cbe1ba3"></script> 
+    <!-- 引入 jquery 静态资源 -->
+    <script src="https://lib.baomitu.com/jquery/3.4.1/jquery.min.js"></script>
     <title>小傅同學</title>
   </head>
   <body>
@@ -12,3 +16,39 @@
     <!-- built files will be auto injected -->
   </body>
 </html>
+<script>
+  // 禁止右键点击
+  window.onload = function () {
+    document.oncontextmenu = function(){
+      return false;
+    }
+    }
+    // 鼠标点击特效
+var mouseSum = 0;
+jQuery(document).ready(function($) {
+    $("body").click(function(e) {
+        var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+        var $i = $("<span/>").text(a[mouseSum]);
+        mouseSum = (mouseSum + 1) % a.length;
+        var x = e.pageX,
+        y = e.pageY;
+        $i.css({
+            "z-index": 9999999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": "red"
+        });
+        $("body").append($i);
+        $i.animate({
+            "top": y - 180,
+            "opacity": 0
+        },
+        1500,
+        function() {
+            $i.remove();
+        });
+    });
+}); 
+</script>

@@ -19,7 +19,6 @@ export default {
 <style lang="scss" scoped>
 $border_bor : .02rem solid #6896a3;
 .text{
-    margin: .2rem 1.2rem;
     text-align: center;
     .text_con{
         margin: .4rem 0;

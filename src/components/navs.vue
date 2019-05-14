@@ -2,37 +2,26 @@
   <div class="navs">
     <div class="usr_img">
         <img src="../assets/13.png" 
-        alt="myworld" 
-        title="welcome to myworld"
-        @click="tohost()">
+            alt="myworld" oncontextmenu="return false;" ondragstart="return false;"
+            title="welcome to myworld"
+            @click="tohost()">
         <div class="back_music">
             <audio class="mui" loop>
                 <source src="../assets/qing.mp3">
             </audio>
             <div class="back_control">
-                <img :src="before_music" alt="muisic" class="music">
+                <img :src="before_music" oncontextmenu="return false;" ondragstart="return false;"
+                    alt="music" class="music">
                 <span class="plays" @click="play_mu">play_music</span>
             </div>
         </div>
     </div>
     <div class="nav">
         <div class="nav_para">
-            <!-- <span @click="tohost(0)" :class="{stys : sty == 0}">总镖</span>
-            <span @click="totext(1)" :class="{stys : sty == 1}">文章</span>
-            <span @click="topoem(2)" :class="{stys : sty == 2}">辞海</span> -->
-            <!-- <span @click="tosome(3)" :class="{stys : sty == 3}">关于</span> -->
-            <!-- <router-link :to="{path : 'some'}">
-                <span :class="{stys : sty == 'router-link-exact-active'}">关于</span>
-            </router-link> -->
-                <router-link :to="{path : '/'}">总镖</router-link>
-
-                <router-link :to="{path : 'text'}">文章</router-link>
-          
-                <router-link :to="{path : 'poem'}">辞海</router-link>
-          
-                <router-link :to="{path : 'some'}">关于</router-link>
-            
-            
+            <router-link :to="{path : '/'}">总镖</router-link>
+            <router-link :to="{path : 'text'}">文章</router-link>          
+            <router-link :to="{path : 'poem'}">辞海</router-link>          
+            <router-link :to="{path : 'some'}">关于</router-link>         
         </div>
         <div class="nav_git">
             <span><a href="http://github.com/The-Dark-Knight6" target="_blank">Github</a></span>
@@ -45,7 +34,6 @@
 export default {
   data() {
       return{
-          sty : 0,
           before_music : require('../assets/mi6us.png')
       }
   },
@@ -68,24 +56,6 @@ export default {
               path : './'
           })
       },
-      totext(e){
-          this.$router.push({
-              path : './text'
-          })
-          this.sty = e
-      },
-      topoem(e){
-          this.$router.push({
-              path : './poem'
-          })
-          this.sty = e
-      },
-      tosome(e){
-          this.$router.push({
-              path : './some'
-          })
-          this.sty = e
-      },
   }
 }
 </script>
@@ -96,6 +66,7 @@ export default {
     border-color: white;
     border-style: solid;
 }
+//当选中<router-link>时会自动带有这个class属性
 .router-link-exact-active{
     border-color: black !important;
     color: black !important;
@@ -141,12 +112,16 @@ export default {
             }
     }
     .nav{
-        padding:.1rem .6rem;
+        padding: .1rem 1.2rem;
         background: white;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         border-top: #eef2f3 .03rem dotted;
+        @media only screen and (min-width: 1200px){
+            padding: .1rem 30% !important;
+            transition: .6s;
+        }
         .nav_para{
             text-align: center;
             a{

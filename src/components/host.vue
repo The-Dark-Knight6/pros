@@ -30,7 +30,6 @@ export default {
 <style lang="scss" scoped>
 $border_bor : .02rem dotted #6896a3;
 .host{
-    margin: .2rem 1.2rem;
     text-align: center;
     .host_content{
         margin: .4rem 0;

@@ -4,13 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import 'lib-flexible/flexible' //rem相对单位
-import foots from '@/components/foots' //底部的注释
-import moment from 'moment' //使用时间处理插件
-
+import navs from '@/components/navs' //顶部导航栏
+import foots from '@/components/foots' //底部
 
 Vue.config.productionTip = false
 Vue.component('foots',foots)
-Vue.prototype.$moment = moment
+Vue.component('navs',navs)
 
 /* eslint-disable no-new */
 new Vue({
