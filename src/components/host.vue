@@ -1,6 +1,7 @@
 <template>
     <div class="host">
         <div class="host_content">
+        <img src="../assets/309617.jpg" alt="back_poem">
 <pre>
 滚滚长江东逝水，浪花淘尽英雄。
 是非成败转头空。
@@ -34,10 +35,14 @@ $border_bor : .02rem dotted #6896a3;
     .host_content{
         margin: .4rem 0;
         border-radius: .5rem;
-        padding: .15rem .2rem;
-        border-left: $border_bor;
-        border-right: $border_bor;
         text-align: left;
+        position: relative;
+        overflow: hidden;
+        >img{
+            width: 100%;
+            filter: opacity(.4);
+            position: absolute;
+        }
         p{
             margin: .2rem 0;
             word-break: break-all; //允许在单词内部换行 长单词换行
@@ -45,7 +50,7 @@ $border_bor : .02rem dotted #6896a3;
         pre{
             line-height: .5rem;
             margin: 0%;
-            padding: 0 .3rem;
+            padding: .3rem;
             font-family: '楷体';
             text-align: center;
         }

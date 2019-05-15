@@ -38,19 +38,16 @@ export default {
 <style lang="scss" scoped>
 .foots{
     background: #eaf1f3;
-    padding: .2rem .4rem;
+    padding:.4rem;
     margin-top: .1rem;
     text-align: center;
+    font-family: '楷体';
     .desc{
-        font-size: .2rem;
         color: gray;
-        font-family: '楷体';
         margin: .15rem;
     }
     .times{
-        font-size: .16rem;
         margin: .15rem;
-        font-family: '楷体';
     }
     .tips{
         margin: .15rem;
@@ -59,7 +56,6 @@ export default {
         }
         span{
             padding: 0 .1rem;
-            font-size: .16rem;
         }
         img{
             width: .35rem;

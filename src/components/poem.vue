@@ -24,7 +24,6 @@ $border_bor : .02rem solid #6896a3;
     text-align: center;
     .poem_con{
         margin: .4rem 0;
-        padding: .15rem .2rem;
         border-top: $border_bor;
         text-align: center;
         p{

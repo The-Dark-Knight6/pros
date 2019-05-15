@@ -21,9 +21,14 @@ body,html{
   margin: 0%;
   padding: 0%;
   background: #f8faFa;
+  transition: .6s;
+}
+ul{
+  list-style: none;
+  padding: 0%;
 }
 *{
-  font-size: 12px;
+  font-size: 15px;
 }
 #views{
   margin: .2rem 1.2rem;

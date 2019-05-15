@@ -14,7 +14,8 @@
             <span><big>风</big>格简述：</span>
             <p>· 少即是多</p>
             <p>· 没有消息就是最好的消息</p>
-            <p>· 音乐是一种生活方式</p>
+            <p>· 音乐是一种生活方式</p> 
+            <!-- 禁止鼠标拖拉图片 禁止保存图片 -->
             <img src="../assets/323888.jpg" title="风格简述"
             oncontextmenu="return false;" ondragstart="return false;" alt="mui">
         </div>
@@ -30,15 +31,67 @@
             <span><big>友</big>情链接：</span>
             <p>- -><a href="https://www.zzhihong.com/" target="_blank">秘密基地</a></p>
             <p>- -><a href="https://www.shenzilong.cn/" target="_blank">崮生</a></p>
-            <p>- -><a href="http://www.ukwuhanyu.cn/" target="_blank">Home</a></p>
             <img src="../assets/318553.jpg" title="友情链接"
             oncontextmenu="return false;" ondragstart="return false;" alt="contact">
+        </div>
+        <div class="real_com">
+            <span>真知灼见：</span><br>
+            <ul>
+                <li v-for="(com,index) in obj" :key="index">
+                    <span>#{{com.name}}</span>
+                    <p>{{com.commend}}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="some_commend">
+            <span>留下足迹：</span><br>
+            <input type="text" v-model="yourname" placeholder="您的昵称" maxlength="10">
+            <p>{{error_name}}</p>
+            <textarea name="comment" v-model="yourcommend" rows="3" maxlength="100" placeholder="您的想法"></textarea>
+            <p>{{error_text}}</p>
+            <button @click="com">评论</button>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    data(){
+        return { 
+            obj : [],
+            yourname : '',
+            yourcommend : '',
+            error_text : '',
+            error_name :''
+        }
+    },
+    methods : {
+        com(){
+            var the_text = /^[\u4E00-\u9FA5A-Za-z0-9，。,.?？!！\s]{1,100}$/
+            if(this.yourname.trim() == '' && this.yourcommend.trim() == ''){
+                this.error_name = '请输入昵称哦'
+                this.error_text = '请输入表达的内容哦'
+            }else if(this.yourname.trim() == ''){
+                this.error_name = '请输入昵称哦'
+                this.error_text = ''
+            }else if(this.yourcommend.trim() == ''){
+                this.error_text = '请输入表达的内容哦'
+                this.error_name = ''
+            }else if(!this.yourcommend.match(the_text)){
+                this.error_text = '评论为1-100的汉字、英文、数字、逗号、句号、感叹号、问号还有空格哦'
+                this.error_name = ''
+            }else{
+                this.obj.push({
+                    name : this.yourname,
+                    commend : this.yourcommend
+                })
+                this.yourname = ''
+                this.yourcommend = ''
+                this.error_text = ''
+                this.error_name = ''
+            }        
+        }
+    },
  mounted(){
      var map = new AMap.Map('container', {
         zoom:12,//级别
@@ -57,30 +110,85 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@mixin commend {
+    outline: none;
+    border: .02rem solid #72adfb;
+    padding: .15rem;
+    background: transparent;
+    margin: .2rem 0;
+    display: inline-block;
+}
  #container{
-     height: 5.6rem;
+     height: 5rem;
      overflow: hidden;
-     margin: 0 .2rem .4rem .2rem;
+     margin-bottom: .2rem;
  }
 .some{
-    text-align: center;
     .amap-demo{
         height: 300px;
     }
+    .real_com{
+        margin-top: .15rem ;
+        >span{
+            border-bottom: .06rem solid gainsboro;
+            margin-top: .2rem;
+            display: inline-block;
+        }
+        li{
+            margin: .15rem 0;
+            span{
+                color: #92c1ff;
+            }
+            p{
+                margin: 0%;
+                text-indent: 10px;
+                word-break: break-all;
+            }
+        }
+    }
+    .some_commend{      
+        p{
+            margin: 0;
+            color: red;
+        }
+        button{
+            display: inline-block;
+            padding: .07rem;
+            width: 2rem;
+            outline: none;
+            background: #b9d2f3;
+            border-radius: .2rem;
+            border: .01rem solid #a4a4fd;
+            margin-top: .2rem;
+        }
+        span{
+            border-bottom: .06rem solid gainsboro;
+            margin: .1rem 0;
+            display: inline-block;
+        }
+        input{
+            width: 5rem;
+            @include commend;
+        }
+        textarea{
+            width: 97%;
+            @include commend;
+            resize: none; //禁止拖拉
+        }
+    }
     .some_cont{
-        padding: .15rem .2rem;
         text-align: left;
         >img{
             width: 100%;
         }
         span{
             border-bottom: .06rem solid gainsboro;
-            font-size: .2rem;
+            font-size: .3rem;
             display: inline-block;
             margin: .1rem 0;
             letter-spacing: .1rem;
             big{
-                font-size: .5rem;
+                font-size: .6rem;
             }
         }
         p{

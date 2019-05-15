@@ -12,7 +12,7 @@
             <div class="back_control">
                 <img :src="before_music" oncontextmenu="return false;" ondragstart="return false;"
                     alt="music" class="music">
-                <span class="plays" @click="play_mu">play_music</span>
+                <span class="plays" @click="play_mu">music</span>
             </div>
         </div>
     </div>
@@ -41,13 +41,13 @@ export default {
       play_mu(){
           var musi = document.querySelector('.mui')
           var pla = document.querySelector('.plays')
-          if(pla.innerHTML === 'play_music'){
+          if(pla.innerHTML === 'music'){
               musi.play()
-              pla.innerHTML = 'pause_music'
+              pla.innerHTML = 'pause'
               this.before_music = require('../assets/mi02.gif')
           }else{
               musi.pause()
-              pla.innerHTML = 'play_music'
+              pla.innerHTML = 'music'
               this.before_music = require('../assets/mi6us.png')
           }
       },
@@ -86,7 +86,7 @@ export default {
         padding: .2rem;
         position: relative;
             >img{
-                width: 3rem;
+                width: 4.5rem;
                 &:hover{
                     cursor: pointer;
                     animation: 1.6s img_act;
@@ -94,7 +94,7 @@ export default {
             }
             .back_music{
                 position: absolute;
-                right: 0%;top:.2rem;
+                right: 0%;top:.26rem;
                 .back_control{
                     *{
                         vertical-align: middle;
@@ -128,7 +128,7 @@ export default {
                 -webkit-tap-highlight-color: transparent;
                 text-decoration: none;
                 display: inline-block;
-                font-size: .3rem;
+                font-size: .35rem;
                 color: #ccc;
                 padding: .1rem;
                 @include hover_border;
