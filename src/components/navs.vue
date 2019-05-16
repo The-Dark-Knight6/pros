@@ -19,9 +19,9 @@
     <div class="nav">
         <div class="nav_para">
             <router-link :to="{path : '/'}">总镖</router-link>
-            <router-link :to="{path : 'text'}">文章</router-link>          
-            <router-link :to="{path : 'poem'}">辞海</router-link>          
-            <router-link :to="{path : 'some'}">关于</router-link>         
+            <router-link :to="{path : '/text'}">文章</router-link>          
+            <router-link :to="{path : '/poem'}">辞海</router-link>          
+            <router-link :to="{path : '/some'}">关于</router-link>    
         </div>
         <div class="nav_git">
             <span><a href="http://github.com/The-Dark-Knight6" target="_blank">Github</a></span>

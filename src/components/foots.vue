@@ -42,6 +42,9 @@ export default {
     margin-top: .1rem;
     text-align: center;
     font-family: '楷体';
+    >*{
+        font-size: 12px;
+    }
     .desc{
         color: gray;
         margin: .15rem;

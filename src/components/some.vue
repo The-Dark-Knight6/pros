@@ -34,11 +34,16 @@
             <img src="../assets/318553.jpg" title="友情链接"
             oncontextmenu="return false;" ondragstart="return false;" alt="contact">
         </div>
+        <div class="some_cont">
+            <span><big>彩</big>蛋：</span>
+            <p><router-link :to="{path : '/game'}">+ 做出你的决定</router-link> </p>
+        </div>
         <div class="real_com">
             <span>真知灼见：</span><br>
+            <p v-if="obj.length == 0">还没有高人指点呢~马上抢沙发吧~</p>
             <ul>
                 <li v-for="(com,index) in obj" :key="index">
-                    <span>#{{com.name}}</span>
+                    <span>#{{index+1}}楼：{{com.name}}</span>
                     <p>{{com.commend}}</p>
                 </li>
             </ul>
@@ -134,6 +139,10 @@ export default {
             margin-top: .2rem;
             display: inline-block;
         }
+        >p{
+            color: gray;
+            text-indent: .3rem;
+        }
         li{
             margin: .15rem 0;
             span{
@@ -141,7 +150,7 @@ export default {
             }
             p{
                 margin: 0%;
-                text-indent: 10px;
+                text-indent: 12px;
                 word-break: break-all;
             }
         }
