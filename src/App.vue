@@ -27,13 +27,11 @@ ul{
   list-style: none;
   padding: 0%;
 }
-*{
-  font-size: 15px;
-}
+
 #views{
   margin: .2rem 1.2rem;
 }
-@media only screen and (min-width: 1200px){
+@media only screen and (min-device-width:480px){
   #views{
     margin: 0% 30%;
     transition: .6s;

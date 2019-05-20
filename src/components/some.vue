@@ -72,7 +72,9 @@ export default {
     },
     methods : {
         com(){
+           // console.log(this.yourcommend)
             var the_text = /^[\u4E00-\u9FA5A-Za-z0-9，。,.?？!！\s]{1,100}$/
+            var that = this
             if(this.yourname.trim() == '' && this.yourcommend.trim() == ''){
                 this.error_name = '请输入昵称哦'
                 this.error_text = '请输入表达的内容哦'
@@ -88,13 +90,23 @@ export default {
             }else{
                 this.obj.push({
                     name : this.yourname,
-                    commend : this.yourcommend
+                    commend : this.yourcommend  
                 })
-                this.yourname = ''
-                this.yourcommend = ''
-                this.error_text = ''
-                this.error_name = ''
-            }        
+                 this.$http.post('api/reply',{params:{
+                 name : that.yourname,
+                 comment : that.yourcommend
+             }}).then(res => {       
+                console.log(res)
+            }).catch(err => {
+                console.log(err)
+            })
+                // this.yourname = ''
+                // this.yourcommend = ''
+                // this.error_text = ''
+                // this.error_name = ''
+            }    
+
+                
         }
     },
  mounted(){
@@ -142,9 +154,11 @@ export default {
         >p{
             color: gray;
             text-indent: .3rem;
+            font-size: .14rem;
         }
         li{
             margin: .15rem 0;
+            font-size: .15rem;
             span{
                 color: #92c1ff;
             }
@@ -159,6 +173,7 @@ export default {
         p{
             margin: 0;
             color: red;
+            font-size: .1rem;
         }
         button{
             display: inline-block;
@@ -169,6 +184,7 @@ export default {
             border-radius: .2rem;
             border: .01rem solid #a4a4fd;
             margin-top: .2rem;
+            font-size: .25rem;
         }
         span{
             border-bottom: .06rem solid gainsboro;
@@ -177,16 +193,19 @@ export default {
         }
         input{
             width: 5rem;
+            font-size: .3rem;
             @include commend;
         }
         textarea{
             width: 97%;
+            font-size: .3rem;
             @include commend;
             resize: none; //禁止拖拉
         }
     }
     .some_cont{
         text-align: left;
+        font-size: .18rem;
         >img{
             width: 100%;
         }
@@ -205,6 +224,7 @@ export default {
             letter-spacing: .02rem;
             margin: .2rem 0;
             word-break: break-all; //允许在单词内部换行 长单词换行
+            font-size: .14rem;
             a{
                 -webkit-tap-highlight-color: transparent;
                 text-decoration: none;

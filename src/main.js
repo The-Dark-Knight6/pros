@@ -6,10 +6,12 @@ import router from './router'
 import 'lib-flexible/flexible' //rem相对单位
 import navs from '@/components/navs' //顶部导航栏
 import foots from '@/components/foots' //底部
+import axios from 'axios' //引入http请求
 
 Vue.config.productionTip = false
 Vue.component('foots',foots)
 Vue.component('navs',navs)
+Vue.prototype.$http = axios
 
 /* eslint-disable no-new */
 new Vue({

@@ -118,7 +118,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         border-top: #eef2f3 .03rem dotted;
-        @media only screen and (min-width: 1200px){
+        @media only screen and (min-device-width:480px){
             padding: .1rem 30% !important;
             transition: .6s;
         }

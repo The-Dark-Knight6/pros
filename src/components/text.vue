@@ -25,8 +25,8 @@ $border_bor : .02rem solid #6896a3;
         padding: .15rem .2rem;
         border-radius: .2rem;
         border-top: $border_bor;
-        border-bottom: $border_bor;
         text-align: left;
+        font-size: .15rem;
         h3{
             color: #259;
             margin: 0%;
