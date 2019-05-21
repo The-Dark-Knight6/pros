@@ -42,18 +42,18 @@ export default {
     margin-top: .1rem;
     text-align: center;
     font-family: '楷体';
-    >*{
-        font-size: 12px;
-    }
     .desc{
         color: gray;
         margin: .15rem;
+        font-size: .25rem;
     }
     .times{
         margin: .15rem;
+        font-size: .25rem;
     }
     .tips{
         margin: .15rem;
+        font-size: .25rem;
         *{
             vertical-align: middle;
         }
