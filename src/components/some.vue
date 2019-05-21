@@ -38,6 +38,8 @@
             <span><big>彩</big>蛋：</span>
             <p><router-link :to="{path : '/game'}">+ 做出你的决定</router-link> </p>
             <p><a href="http://www.mvcat.com/music/" target="_blank">+ 全网音乐</a></p>
+            <p><a href="http://yunkus.com/front-end-web-develoment/" target="_blank">+ 前端宝典</a></p>
+            <p><a href="https://developer.mozilla.org/zh-CN/">+ MDN</a></p>
         </div>
         <div class="real_com">
             <span>真知灼见：</span><br>
