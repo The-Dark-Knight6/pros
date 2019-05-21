@@ -45,15 +45,15 @@ export default {
     .desc{
         color: gray;
         margin: .15rem;
-        font-size: .3rem;
+        font-size: .25rem;
     }
     .times{
         margin: .15rem;
-        font-size: .3rem;
+        font-size: .25rem;
     }
     .tips{
         margin: .15rem;
-        font-size: .3rem;
+        font-size: .25rem;
         *{
             vertical-align: middle;
         }

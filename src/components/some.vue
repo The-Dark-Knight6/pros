@@ -7,7 +7,7 @@
             <p>Who：个人</p>
             <p>What：简约博客</p>
             <p>Why：加强vue理解、学习全栈式编程、探索更多知识</p>
-            <p>How：nodejs + nginx + mysql + vue + vue-cli + webpack + vue-router + ...</p>
+            <p>How：nodejs + nginx + express + mysql + vue + ...</p>
         </div>
         <div id="container"></div> 
         <div class="some_cont">
@@ -37,14 +37,18 @@
         <div class="some_cont">
             <span><big>彩</big>蛋：</span>
             <p><router-link :to="{path : '/game'}">+ 做出你的决定</router-link> </p>
+            <p><a href="http://www.mvcat.com/music/" target="_blank">+ 全网音乐</a></p>
         </div>
         <div class="real_com">
             <span>真知灼见：</span><br>
             <p v-if="obj.length == 0">还没有高人指点呢~马上抢沙发吧~</p>
             <ul>
                 <li v-for="(com,index) in obj" :key="index">
-                    <span>#{{index+1}}楼：{{com.name}}</span>
-                    <p>{{com.commend}}</p>
+                    <div class="li_span">
+                        <span>#{{index+1}}楼：{{com.name}}</span>
+                        <span>{{com.times | formatDate}}</span>
+                    </div>
+                    <p>{{com.comments}}</p>
                 </li>
             </ul>
         </div>
@@ -60,7 +64,16 @@
 </template>
 
 <script>
+import {formatDate} from '../assets/formatDate.js'
 export default {
+    // 处理数据库时间戳 在页面中规范显示
+     filters: {
+        formatDate(times) {
+            var times = times * 1000 //由于获取的时间戳为毫秒需要*1000
+            var date = new Date(times);
+            return formatDate(date, 'yyyy-MM-dd hh:mm');
+        }
+    },
     data(){
         return { 
             obj : [],
@@ -71,8 +84,13 @@ export default {
         }
     },
     methods : {
+        the_com(){
+            this.$http.get('api/users').then(res => {
+                console.log(res)
+                this.obj = res.data.data
+            })
+        },
         com(){
-           // console.log(this.yourcommend)
             var the_text = /^[\u4E00-\u9FA5A-Za-z0-9，。,.?？!！\s]{1,100}$/
             var that = this
             if(this.yourname.trim() == '' && this.yourcommend.trim() == ''){
@@ -88,28 +106,26 @@ export default {
                 this.error_text = '评论为1-100的汉字、英文、数字、逗号、句号、感叹号、问号还有空格哦'
                 this.error_name = ''
             }else{
-                this.obj.push({
-                    name : this.yourname,
-                    commend : this.yourcommend  
-                })
+                // this.obj.push({
+                //     name : this.yourname,
+                //     commend : this.yourcommend  
+                // })
                  this.$http.post('api/reply',{params:{
                  name : that.yourname,
                  comment : that.yourcommend
-             }}).then(res => {       
+            }}).then(res => {       
                 console.log(res)
-            }).catch(err => {
-                console.log(err)
             })
-                // this.yourname = ''
-                // this.yourcommend = ''
-                // this.error_text = ''
-                // this.error_name = ''
-            }    
-
-                
-        }
+                this.yourname = ''
+                this.yourcommend = ''
+                this.error_text = ''
+                this.error_name = ''
+                this.the_com()               
+            }           
+        },
     },
  mounted(){
+     //高德地图的引入和使用
      var map = new AMap.Map('container', {
         zoom:12,//级别
         center: [114.122034,22.655371],//中心点坐标
@@ -121,7 +137,9 @@ export default {
         strokeColor: 'blue', // 描边颜色
         strokeWeight: 1.5, // 描边宽度
     })
-    map.add(circleMarker);
+    map.add(circleMarker)
+    // 评论数据的载入
+    this.the_com()
  }
 }
 </script>
@@ -159,6 +177,14 @@ export default {
         li{
             margin: .15rem 0;
             font-size: .15rem;
+            .li_span{
+                display: flex;
+                justify-content: space-between;
+                span{
+                    font-size: .3rem;
+                    display: inline-block;
+                }
+            }
             span{
                 color: #92c1ff;
             }
@@ -173,7 +199,7 @@ export default {
         p{
             margin: 0;
             color: red;
-            font-size: .1rem;
+            font-size: .15rem;
         }
         button{
             display: inline-block;

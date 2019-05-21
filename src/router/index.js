@@ -5,6 +5,7 @@ import poem from '@/components/poem'
 import some from '@/components/some'
 import game from '@/components/game'
 import text from '@/components/text'
+import add from '@/components/add'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path : '/game',
       name : 'game',
       component : game
+    },
+    {
+      path : '/add',
+      name : 'add',
+      component : add
     },
   ]
 })
