@@ -6,14 +6,29 @@
             <button @click="toadd">show time</button>
         </div>
         <div class="realme" v-if="myself">
+            <!-- 选择发布文字的类型   默认为 文章-->
+            <div class="chooes">
+                <label for="text"><input type="radio" id="text" v-model="types" value="text">文章</label>
+                <label for="poem"><input type="radio" id="poem" v-model="types" value="poem">辞海</label>
+            </div>
             <input type="text" name="title" v-model="title" maxlength="15" placeholder="文章标题">
-            <textarea name="content" v-model="content" rows="15" placeholder="文章内容"></textarea>
-            <button @click="pub">发布</button>
+            <!-- 引入 富文本编辑器 -->
+            <div class="edit_container">
+                <quill-editor
+                    v-model="content" 
+                    ref="myQuillEditor" 
+                    :options="editorOption" 
+                    @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
+                    @change="onEditorChange($event)">
+                </quill-editor>
+            <button @click="pub">保存</button>
+        </div>
         </div>
     </div>
 </template>
 
 <script>
+
 export default {
     data(){
         return{
@@ -22,10 +37,23 @@ export default {
             title : '',
             content : '',   
             myname : '',
-            mypass : ''
+            mypass : '',
+            editorOption: {
+            },   
+            types : 'text'        
         }
     },
+     computed: {
+        editor() {
+            return this.$refs.myQuillEditor.quill;
+        },
+    },
     methods : {
+        onEditorReady(editor) { // 准备编辑器
+        },
+        onEditorBlur(){}, // 失去焦点事件
+        onEditorFocus(){}, // 获得焦点事件
+        onEditorChange(){}, // 内容改变事件
         //判断 当前发布文章的用户是否为本人
         toadd(){
             if(this.myname === this.obj.realname && this.mypass === this.obj.realpass){
@@ -42,17 +70,22 @@ export default {
                 this.obj = res.data.data[0]
             })
         },
-        // 发布文章 传送数据到数据库
+        // 发布文字(文章或者词句) 传送数据到数据库
         pub(){
             var that = this
-            if(this.title.trim() != '' && this.content.trim() != ''){
-                    this.$http.post('api/addtext',{params:{
-                        title : that.title,
-                        article : that.content
-                    }})
-                    this.title = ''
-                    this.content = ''          
-                    console.log('发布成功了，老兄...')   
+            var sures = this.title.trim() != '' && this.content.trim() != ''
+            if(this.types === 'text' && sures){
+                this.$http.post('api/addtext',{params:{
+                    title : that.title,
+                    article : that.content
+                }})
+                alert('发布成功，兄弟...')
+            }else if(this.types === 'poem' && sures){
+                this.$http.post('api/poems',{params:{
+                    title : that.title,
+                    poem : that.content
+                }})
+                alert('发布成功，兄弟...')
             }else{
                 console.log('不要输入空的啊，兄弟...')
             }
@@ -69,21 +102,27 @@ export default {
 background: transparent;
 padding: .2rem;
 -webkit-tap-highlight-color: transparent;
-border-color: #03A9F4;
+border:.02rem solid gray;
 font-size: .3rem;
-width: 95%;
 outline: none;
+width: 90%;
+display: inline-block;
 }
 .realme,.login{
     padding: .4rem .25rem;
     font-size: .25rem;
     text-align: left;
-    input{
-        margin-top: .2rem;
-        @include same;
+    .chooes{
+        margin:.25rem 0;
+        >input{
+            margin: .2rem .25rem;
+        }
     }
-    textarea{
-        margin-top: .3rem;
+    .edit_container{
+        margin-top: .2rem ;
+    }
+    >input{
+        margin-top: .2rem;
         @include same;
     }
     button{

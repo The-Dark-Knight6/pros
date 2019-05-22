@@ -9,12 +9,30 @@
 会向瑶台月下逢。
 </pre>
         </div>
+        <div class="poem_con" v-for="(v,i) in obj" :key="i">
+            <p>{{v.titles}}</p>
+            <div v-html="v.words"></div>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    
+    data(){
+        return{
+            obj : []
+        }
+    },
+    methods : {
+        getpoems(){
+            this.$http.get('api/findpoems').then(res => {
+                this.obj = res.data.data
+            })
+        }
+    },
+    mounted(){
+        this.getpoems()
+    }
 }
 </script>
 

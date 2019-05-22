@@ -7,11 +7,18 @@ import 'lib-flexible/flexible' //rem相对单位
 import navs from '@/components/navs' //顶部导航栏
 import foots from '@/components/foots' //底部
 import axios from 'axios' // http请求
+import VueQuillEditor from 'vue-quill-editor' // 引入 vue-quill-editor富文本编辑器
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+import VueLazyload from 'vue-lazyload' //图片懒加载 将:src换成v-lazy
 
 Vue.config.productionTip = false
 Vue.component('foots',foots)
 Vue.component('navs',navs)
-Vue.prototype.$ajax= axios
+Vue.prototype.$http = axios
+Vue.use(VueQuillEditor)
+Vue.use(VueLazyload)
 
 /* eslint-disable no-new */
 new Vue({

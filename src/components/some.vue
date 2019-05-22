@@ -7,7 +7,6 @@
             <p>Who：个人</p>
             <p>What：简约博客</p>
             <p>Why：加强vue理解、学习全栈式编程、探索更多知识</p>
-            <p>How：nodejs + nginx + express + mysql + vue + ...</p>
         </div>
         <div id="container"></div> 
         <div class="some_cont">
@@ -16,23 +15,20 @@
             <p>· 没有消息就是最好的消息</p>
             <p>· 音乐是一种生活方式</p> 
             <!-- 禁止鼠标拖拉图片 禁止保存图片 -->
-            <img src="../assets/323888.jpg" title="风格简述"
-            oncontextmenu="return false;" ondragstart="return false;" alt="mui">
+            <img v-lazy="img1" title="风格简述" alt="mui">
         </div>
         <div class="some_cont">
             <span><big>A</big>bout me：</span>
             <p>邮箱：645865839@qq.com</p>
             <p>weibo：<a href="https://weibo.com/u/6096309423?is_all=1" target="_blank">@老付一枚</a></p>
             <p>网易：<a href="https://music.163.com/#/user/home?id=535760156" target="_blank">@老付一枚</a></p>
-            <img src="../assets/280745.jpg" title="About me"
-            oncontextmenu="return false;" ondragstart="return false;" alt="self">
+            <img v-lazy="img2" title="About me" alt="self">
         </div>
         <div class="some_cont">
             <span><big>友</big>情链接：</span>
             <p>- -><a href="https://www.zzhihong.com/" target="_blank">秘密基地</a></p>
             <p>- -><a href="https://www.shenzilong.cn/" target="_blank">崮生</a></p>
-            <img src="../assets/318553.jpg" title="友情链接"
-            oncontextmenu="return false;" ondragstart="return false;" alt="contact">
+            <img v-lazy="img3" title="友情链接" alt="contact">
         </div>
         <div class="some_cont">
             <span><big>彩</big>蛋：</span>
@@ -82,7 +78,10 @@ export default {
             yourname : '',
             yourcommend : '',
             error_text : '',
-            error_name :''
+            error_name :'',
+            img1 : require('../assets/323888.jpg'),
+            img2 : require('../assets/280745.jpg'),
+            img3 : require('../assets/318553.jpg'),
         }
     },
     methods : {
@@ -236,6 +235,7 @@ export default {
         font-size: .18rem;
         >img{
             width: 100%;
+            border-radius: .12rem;
         }
         span{
             border-bottom: .06rem solid gainsboro;
