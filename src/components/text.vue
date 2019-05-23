@@ -8,7 +8,7 @@
             </p>            
         </div>
         <div class="text_con" v-for="(v,i) in obj" :key="i">
-            <h3>{{v.titles}}</h3>
+            <h3 @click="desc(v.id)">{{v.titles}}</h3>
             <span>{{v.times | formatDate}}</span>
             <div v-html="v.contents"></div>
         </div>
@@ -36,6 +36,15 @@ export default {
                 this.obj = res.data.data
             })
         },     
+        desc(e){
+            // 点击跳转文章详细页面 使用this.$router传递参数url中？后的参数
+            this.$router.push({
+                path : '/details',
+                query : {
+                    id : e
+                }
+            })
+        }
     },
     mounted() {
         this.gettext()
@@ -62,6 +71,7 @@ $border_bor : .02rem solid #6896a3;
             margin: 0%;
             font-size: .26rem;
             text-align: center;
+            cursor: pointer;
         }
         p,>div{ 
             margin: .2rem 0;

@@ -13,11 +13,14 @@
         </div>
         <div class="host_cont">
             <span><big>写</big>在之前：</span>
-            <p>@Tencent服务器centos操作系統，nginx反向代理，xshell操作，winscp傳輸...</p>
-            <p>@nodejs环境，vue全家桶，mysql数据库，express后端框架，sass预处理...</p>
+            <p>^环境：centos,nginx,nodejs</p>
+            <p>^框架：vue,express</p>
+            <p>^语言：h5,css3,ecmascript6,mysql</p>
+            <p>^工具：vs code,winscp,xshell,navicat</p>
             <p>#文章：博客主要内容，记录点滴。</p>
-            <p>#辞海：撰写优秀的诗、歌、词文化。</p>
-            <p>#关于：本站尾声，提供评论、友链、彩蛋。</p>
+            <p>#辞海：誊写诗、歌、词文化。</p>
+            <p>#关于：尾声，提供评论、友链、彩蛋。</p>
+            <p>#娱乐：抛硬币</p>
             <img v-lazy="img1" alt="loading" title="写在之前">
         </div>
         <div class="host_cont">

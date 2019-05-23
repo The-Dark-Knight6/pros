@@ -11,8 +11,8 @@
             </audio>
             <div class="back_control">
                 <img :src="before_music" oncontextmenu="return false;" ondragstart="return false;"
-                    alt="music" class="music">
-                <span class="plays" @click="play_mu">music</span>
+                    alt="music" class="music" @click="play_mu">
+                <span class="plays">music</span>
             </div>
         </div>
     </div>
@@ -21,10 +21,8 @@
             <router-link :to="{path : '/'}">总镖</router-link>
             <router-link :to="{path : '/text'}">文章</router-link>          
             <router-link :to="{path : '/poem'}">辞海</router-link>          
-            <router-link :to="{path : '/some'}">关于</router-link>    
-        </div>
-        <div class="nav_git">
-            <span><a href="http://github.com/The-Dark-Knight6" target="_blank">Github</a></span>
+            <router-link :to="{path : '/some'}">关于</router-link>
+            <router-link :to="{path : '/game'}">娱乐</router-link>    
         </div>
     </div>
   </div>
@@ -86,7 +84,7 @@ export default {
         padding: .2rem;
         position: relative;
             >img{
-                width: 4.5rem;
+                width: 5rem;
                 &:hover{
                     cursor: pointer;
                     animation: 1.6s img_act;
@@ -101,12 +99,13 @@ export default {
                     }
                     .music{
                         height: .5rem;
-                    } 
-                    >span{
                         margin-right: .5rem;
                         &:hover{
                             cursor: pointer;
                         }
+                    } 
+                    >span{
+                        display: none
                     }
                 }
             }
@@ -114,16 +113,13 @@ export default {
     .nav{
         padding: .1rem 1.2rem;
         background: white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        text-align: left;
         border-top: #eef2f3 .03rem dotted;
         @media only screen and (min-device-width:480px){
             padding: .1rem 30% !important;
             transition: .6s;
         }
         .nav_para{
-            text-align: center;
             a{
                 -webkit-tap-highlight-color: transparent;
                 text-decoration: none;
@@ -137,21 +133,6 @@ export default {
                     border-color: black;
                     color: black;
                     cursor: pointer;
-                }
-            }
-        }
-        .nav_git{
-            span{
-                color: #689ca5;
-                border: 1px solid #689ca5;
-                display: inline-block;
-                padding:.08rem;
-                text-align: center;
-                font-size: .3rem;
-                a{
-                    -webkit-tap-highlight-color: transparent;
-                    text-decoration: none;  
-                    color: #689ca5;
                 }
             }
         }

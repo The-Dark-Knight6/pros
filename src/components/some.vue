@@ -2,7 +2,7 @@
     <div class="some">
         <div class="some_cont">
             <span><big>自</big>定义：</span>
-            <p>When：2019-05-20 00：00 夜</p>
+            <p>When：2019-05-12 00：00 夜</p>
             <p>Where：深圳市龙岗区甘李二路中海信创新产业城</p>
             <p>Who：个人</p>
             <p>What：简约博客</p>
@@ -14,12 +14,12 @@
             <p>· 少即是多</p>
             <p>· 没有消息就是最好的消息</p>
             <p>· 音乐是一种生活方式</p> 
-            <!-- 禁止鼠标拖拉图片 禁止保存图片 -->
             <img v-lazy="img1" title="风格简述" alt="mui">
         </div>
         <div class="some_cont">
             <span><big>A</big>bout me：</span>
             <p>邮箱：645865839@qq.com</p>
+            <p>Github: <a href="http://github.com/The-Dark-Knight6" target="_blank">@Classmate_Fu</a></p>
             <p>weibo：<a href="https://weibo.com/u/6096309423?is_all=1" target="_blank">@老付一枚</a></p>
             <p>网易：<a href="https://music.163.com/#/user/home?id=535760156" target="_blank">@老付一枚</a></p>
             <img v-lazy="img2" title="About me" alt="self">
@@ -32,7 +32,6 @@
         </div>
         <div class="some_cont">
             <span><big>彩</big>蛋：</span>
-            <p><router-link :to="{path : '/game'}">+ 做出你的决定</router-link> </p>
             <p><a href="http://www.mvcat.com/music/" target="_blank">+ 全网音乐</a></p>
             <p><a href="http://yunkus.com/front-end-web-develoment/" target="_blank">+ 前端宝典</a></p>
             <p><a href="https://developer.mozilla.org/zh-CN/">+ MDN</a></p>
@@ -87,7 +86,6 @@ export default {
     methods : {
         the_com(){
             this.$http.get('api/users').then(res => {
-                console.log(res)
                 this.obj = res.data.data
             })
         },
@@ -232,7 +230,6 @@ export default {
     }
     .some_cont{
         text-align: left;
-        font-size: .18rem;
         >img{
             width: 100%;
             border-radius: .12rem;

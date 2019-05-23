@@ -44,6 +44,7 @@ $border_bor : .02rem solid #6896a3;
         margin: .4rem 0;
         border-top: $border_bor;
         text-align: center;
+        word-break: break-all;
         p{
             color: #259;
             margin: .2rem 0;

@@ -11,7 +11,6 @@
                 <div class="bo_no"></div>
             </div>
         </div>
-        
     </div>
 </template>
 
@@ -57,7 +56,7 @@ export default {
 i.spaci{
     font-size: .35rem;
     color: gray;
-    margin: .2rem 0;
+    margin: .45rem 0;
     text-align: center;
     display: block;
     animation: deng  2.5s forwards;
