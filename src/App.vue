@@ -33,7 +33,7 @@ ul{
 }
 @media only screen and (min-device-width:480px){
   #views{
-    margin: 0% 30%;
+    margin: .2rem 30%;
     transition: .6s;
   }
 }

@@ -27,6 +27,9 @@
             <span><big>文</big>章检索：</span>
             <div v-for="(v,i) in obj_txt" :key="i">
                 <p>{{v.titles}}</p>
+                <p v-if="v.length >= 5" @click="totext" style="color:#6896a3">
+                    <router-link :to="{path:'/text'}">显示更多...</router-link>
+                </p>
             </div>
         </div>
         <div class="host_cont">
@@ -97,6 +100,9 @@ $border_bor : .02rem dotted #6896a3;
             margin: .2rem 0;
             word-break: break-all; //允许在单词内部换行 长单词换行
             font-size: .14rem;
+            a{
+                text-decoration: none;
+            }
         }
     }
     .host_content{

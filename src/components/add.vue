@@ -11,7 +11,7 @@
                 <label for="text"><input type="radio" id="text" v-model="types" value="text">文章</label>
                 <label for="poem"><input type="radio" id="poem" v-model="types" value="poem">辞海</label>
             </div>
-            <input type="text" name="title" v-model="title" maxlength="15" placeholder="文章标题">
+            <input type="text" name="title" v-model="title" maxlength="25" placeholder="文章标题">
             <!-- 引入 富文本编辑器 -->
             <div class="edit_container">
                 <quill-editor
@@ -28,8 +28,8 @@
 </template>
 
 <script>
-
 export default {
+
     data(){
         return{
             myself : false,
@@ -38,9 +38,8 @@ export default {
             content : '',   
             myname : '',
             mypass : '',
-            editorOption: {
-            },   
-            types : 'text'        
+            editorOption: {},
+            types : 'text'
         }
     },
      computed: {

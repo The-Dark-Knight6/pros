@@ -10,7 +10,8 @@
         <div class="text_con" v-for="(v,i) in obj" :key="i">
             <h3 @click="desc(v.id)">{{v.titles}}</h3>
             <span>{{v.times | formatDate}}</span>
-            <div v-html="v.contents"></div>
+            <div v-html="v.contents" :class="{hiddens : v.contents.length >= 250}"></div>
+            <p @click="desc(v.id)" v-if="v.contents.length >= 250" style="color:#6896a3">显示全部...</p>
         </div>
     </div>
 </template>
@@ -44,6 +45,10 @@ export default {
                     id : e
                 }
             })
+            // 点击回到页面顶部 防止滚动条停留在中间
+            document.body.scrollTop = 0
+            document.documentElement.scrollTop = 0
+            
         }
     },
     mounted() {
@@ -61,6 +66,10 @@ $border_bor : .02rem solid #6896a3;
         border-radius: .2rem;
         border-top: $border_bor;
         text-align: left;
+        .hiddens{
+            height: 6rem;
+            overflow: hidden;
+        }
         span{
             font-size: .15rem;
             display: block;
@@ -73,7 +82,7 @@ $border_bor : .02rem solid #6896a3;
             text-align: center;
             cursor: pointer;
         }
-        p,>div{ 
+        p,>div,.hiddens>p{ 
             margin: .2rem 0;
             word-break: break-all; //允许在单词内部换行 长单词换行
             font-size: .24rem;
