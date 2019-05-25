@@ -71,21 +71,19 @@ $border_bor : .02rem solid #6896a3;
             overflow: hidden;
         }
         span{
-            font-size: .15rem;
             display: block;
             text-align: center;
         }
         h3{
             color: #259;
             margin: 0%;
-            font-size: .26rem;
+            font-size: 16px;
             text-align: center;
             cursor: pointer;
         }
         p,>div,.hiddens>p{ 
             margin: .2rem 0;
             word-break: break-all; //允许在单词内部换行 长单词换行
-            font-size: .24rem;
         }
     }
 }

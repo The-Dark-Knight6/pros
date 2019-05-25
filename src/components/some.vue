@@ -171,16 +171,13 @@ export default {
         >p{
             color: gray;
             text-indent: .3rem;
-            font-size: .14rem;
         }
         li{
             margin: .15rem 0;
-            font-size: .15rem;
             .li_span{
                 display: flex;
                 justify-content: space-between;
                 span{
-                    font-size: .3rem;
                     display: inline-block;
                 }
             }
@@ -198,7 +195,6 @@ export default {
         p{
             margin: 0;
             color: red;
-            font-size: .15rem;
         }
         button{
             display: inline-block;
@@ -209,7 +205,6 @@ export default {
             border-radius: .2rem;
             border: .01rem solid #a4a4fd;
             margin-top: .2rem;
-            font-size: .25rem;
         }
         span{
             border-bottom: .06rem solid gainsboro;
@@ -218,12 +213,10 @@ export default {
         }
         input{
             width: 5rem;
-            font-size: .3rem;
             @include commend;
         }
         textarea{
             width: 97%;
-            font-size: .3rem;
             @include commend;
             resize: none; //禁止拖拉
         }
@@ -236,7 +229,6 @@ export default {
         }
         span{
             border-bottom: .06rem solid gainsboro;
-            font-size: .3rem;
             display: inline-block;
             margin: .1rem 0;
             letter-spacing: .1rem;
@@ -249,7 +241,6 @@ export default {
             letter-spacing: .02rem;
             margin: .2rem 0;
             word-break: break-all; //允许在单词内部换行 长单词换行
-            font-size: .14rem;
             a{
                 -webkit-tap-highlight-color: transparent;
                 text-decoration: none;

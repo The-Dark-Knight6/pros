@@ -19,8 +19,8 @@
             <p>^工具：vs code,winscp,xshell,navicat</p>
             <p>#文章：博客主要内容，记录点滴。</p>
             <p>#辞海：誊写诗、歌、词文化。</p>
-            <p>#关于：尾声，提供评论、友链、彩蛋。</p>
             <p>#娱乐：抛硬币</p>
+            <p>#关于：尾声，提供评论、友链、彩蛋。</p>           
             <img v-lazy="img1" alt="loading" title="写在之前">
         </div>
         <div class="host_cont">
@@ -79,14 +79,12 @@ $border_bor : .02rem dotted #6896a3;
     text-align: center;
     .host_cont{
         text-align: left;
-        font-size: .18rem;
         >img{
             width: 100%;
             border-radius: .12rem;
         }
         span{
             border-bottom: .06rem solid gainsboro;
-            font-size: .3rem;
             display: inline-block;
             margin: .1rem 0;
             letter-spacing: .1rem;

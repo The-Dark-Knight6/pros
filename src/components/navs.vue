@@ -20,9 +20,9 @@
         <div class="nav_para">
             <router-link :to="{path : '/'}">总镖</router-link>
             <router-link :to="{path : '/text'}">文章</router-link>          
-            <router-link :to="{path : '/poem'}">辞海</router-link>          
-            <router-link :to="{path : '/some'}">关于</router-link>
+            <router-link :to="{path : '/poem'}">辞海</router-link>       
             <router-link :to="{path : '/game'}">娱乐</router-link>    
+            <router-link :to="{path : '/some'}">关于</router-link>          
         </div>
     </div>
   </div>

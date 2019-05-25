@@ -27,7 +27,9 @@ ul{
   list-style: none;
   padding: 0%;
 }
-
+*{
+  font-size: 14px;
+}
 #views{
   margin: .2rem 1.2rem;
 }
