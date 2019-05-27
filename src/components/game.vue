@@ -11,6 +11,10 @@
                 <div class="bo_no"></div>
             </div>
         </div>
+         <div class="game_cont">
+            <i class="spaci">Choice is more important than effort</i>
+            <img v-lazy="img1" title="choice" alt="mui">
+        </div>
     </div>
 </template>
 
@@ -18,7 +22,8 @@
 export default {
     data(){
         return {
-            msg : 'click'
+            msg : 'click',
+            img1 : require('../assets/323822.jpg')
         }
     },
     methods : {
@@ -70,6 +75,13 @@ i.spaci{
         opacity: 1;
     }
 }
+.game_cont{
+        text-align: left;
+        >img{
+            width: 100%;
+            border-radius: .12rem;
+        }
+    }
 .iconpart{
     position: relative;
     width:100%;
@@ -107,6 +119,7 @@ i.spaci{
         >span{
             padding: .5rem;
             cursor: pointer;
+            font-size: 20px;
         }
     }
     // 这是滑动到左边的过渡动画

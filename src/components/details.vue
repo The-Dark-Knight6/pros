@@ -5,6 +5,27 @@
             <span>{{obj.times | formatDate}}</span>
             <div v-html="obj.contents"></div>
         </div>
+        <div class="details_com">
+            <span>真知灼见：</span><br>
+            <p v-if="commend_obj.length == 0">还没有高人指点呢~马上抢沙发吧~</p>
+            <ul>
+                <li v-for="(com,index) in commend_obj" :key="index">
+                    <div class="li_span">
+                        <span>#{{index+1}}楼：{{com.name}}</span>
+                        <span>{{com.times | formatDate}}</span>
+                    </div>
+                    <p>{{com.commend}}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="details_commend">
+            <span>留下足迹：</span><br>
+            <input type="text" v-model="yourname" placeholder="您的昵称" maxlength="10">
+            <p>{{error_name}}</p>
+            <textarea name="comment" v-model="yourcommend" rows="3" maxlength="100" placeholder="您的想法"></textarea>
+            <p>{{error_text}}</p>
+            <button @click="com">评论</button>
+        </div>
     </div>    
 </template>
 
@@ -20,7 +41,12 @@ export default {
     },
     data(){
         return{
-            obj : []
+            obj : [],
+            commend_obj : [],
+            yourname : '',
+            yourcommend : '',
+            error_text : '',
+            error_name :'',
         }
     },
     methods:{
@@ -31,38 +57,142 @@ export default {
             }}).then(res => {
                 this.obj = res.data.data[0]
             })
+        },
+        com(){
+            var the_text = /^[\u4E00-\u9FA5A-Za-z0-9，。,.?？!！；;\s]{1,100}$/
+            var that = this
+            if(this.yourname.trim() == '' && this.yourcommend.trim() == ''){
+                this.error_name = '请输入昵称哦'
+                this.error_text = '请输入表达的内容哦'
+            }else if(this.yourname.trim() == ''){
+                this.error_name = '请输入昵称哦'
+                this.error_text = ''
+            }else if(this.yourcommend.trim() == ''){
+                this.error_text = '请输入表达的内容哦'
+                this.error_name = ''
+            }else if(!this.yourcommend.match(the_text)){
+                this.error_text = '评论为1-100的汉字、英文、数字、逗号、句号、感叹号、问号、分号还有空格哦'
+                this.error_name = ''
+            }else{
+                 this.$http.post('api/totext',{params:{
+                 name : that.yourname,
+                 comment : that.yourcommend,
+                 id : that.$route.query.id
+            }})
+                this.yourname = ''
+                this.yourcommend = ''
+                this.error_text = ''
+                this.error_name = ''
+                that.fincom()
+            }           
+        },
+        fincom(){
+            this.$http('api/fintcom',{params:{
+                id : this.$route.query.id
+            }}).then(res => {
+                this.commend_obj = res.data.data
+            })
         }
     },
     mounted(){
         this.gettexts()
+        this.fincom()
     }
 }
 </script>
 
 <style lang="scss" scoped>
+@mixin commend {
+    outline: none;
+    border: .02rem solid #72adfb;
+    padding: .15rem;
+    background: transparent;
+    margin: .2rem 0;
+    display: inline-block;
+}
 $border_bor : .02rem solid #6896a3;
 .details{
-    text-align: center;
     .details_con{
+        overflow: hidden;
         padding: .15rem .2rem;
         border-radius: .2rem;
         border-top: $border_bor;
         text-align: left;
         span{
-            font-size: .15rem;
+            font-size: 10px;
             display: block;
             text-align: center;
         }
         h3{
             color: #259;
             margin: 0%;
-            font-size: .26rem;
+            font-size: 18px;
             text-align: center;
         }
         p,>div{ 
             margin: .2rem 0;
             word-break: break-all; //允许在单词内部换行 长单词换行
-            font-size: .24rem;
+        }
+    }
+    .details_com{
+        margin-top: .15rem ;
+        >span{
+            border-bottom: .06rem solid gainsboro;
+            margin-top: .2rem;
+            display: inline-block;
+        }
+        >p{
+            color: gray;
+            text-indent: .3rem;
+        }
+        li{
+            margin: .15rem 0;
+            .li_span{
+                display: flex;
+                justify-content: space-between;
+                span{
+                    font-size: 12px;
+                }
+            }
+            span{
+                color: #92c1ff;
+            }
+            p{
+                margin: 0%;
+                text-indent: 12px;
+                word-break: break-all;
+            }
+        }
+    }
+    .details_commend{      
+        p{
+            margin: 0;
+            color: red;
+            font-size: 12px;
+        }
+        button{
+            display: inline-block;
+            padding: .07rem;
+            width: 2rem;
+            outline: none;
+            background: #b9d2f3;
+            border-radius: .2rem;
+            border: .01rem solid #a4a4fd;
+            margin-top: .2rem;
+        }
+        span{
+            border-bottom: .06rem solid gainsboro;
+            margin: .1rem 0;
+            display: inline-block;
+        }
+        input{
+            width: 5rem;
+            @include commend;
+        }
+        textarea{
+            width: 90%;
+            @include commend;
+            resize: none; //禁止拖拉
         }
     }
 }

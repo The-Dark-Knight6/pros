@@ -18,7 +18,7 @@
             <p>^语言：h5,css3,ecmascript6,mysql</p>
             <p>^工具：vs code,winscp,xshell,navicat</p>
             <p>#文章：博客主要内容，记录点滴。</p>
-            <p>#辞海：誊写诗、歌、词文化。</p>
+            <p>#辞海：摘录诗、歌、词。</p>
             <p>#娱乐：抛硬币</p>
             <p>#关于：尾声，提供评论、友链、彩蛋。</p>           
             <img v-lazy="img1" alt="loading" title="写在之前">
@@ -26,8 +26,8 @@
         <div class="host_cont">
             <span><big>文</big>章检索：</span>
             <div v-for="(v,i) in obj_txt" :key="i">
-                <p>{{v.titles}}</p>
-                <p v-if="v.length >= 5" @click="totext" style="color:#6896a3">
+                <p @click="totext(v.id)" style="cursor: pointer">{{v.titles}}</p>
+                <p v-if="v.length >= 5" class="showmore">
                     <router-link :to="{path:'/text'}">显示更多...</router-link>
                 </p>
             </div>
@@ -39,6 +39,9 @@
             <span><big>辞</big>海检索：</span>
             <div v-for="(v,i) in obj_poem" :key="i">
                 <p>{{v.titles}}</p>
+                <p v-if="v.length >= 5" class="showmore">
+                    <router-link :to="{path:'/poem'}">显示更多...</router-link>
+                </p>
             </div>
         </div>
     </div>
@@ -63,6 +66,14 @@ export default {
         getpoem(){
             this.$http.get('api/findpoems').then(res => {
                 this.obj_poem = res.data.data
+            })
+        },
+        totext(e){
+            this.$router.push({
+                path : '/details',
+                query : {
+                    id : e
+                }
             })
         }
     },
@@ -89,15 +100,18 @@ $border_bor : .02rem dotted #6896a3;
             margin: .1rem 0;
             letter-spacing: .1rem;
             big{
-                font-size: .6rem;
+                font-size: 25px;
             }
+        }
+        p.showmore{
+            cursor: pointer;
+            color:#6896a3;
         }
         p{
             color: #1c385d;
             letter-spacing: .02rem;
             margin: .2rem 0;
             word-break: break-all; //允许在单词内部换行 长单词换行
-            font-size: .14rem;
             a{
                 text-decoration: none;
             }

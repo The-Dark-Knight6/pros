@@ -6,7 +6,7 @@
             <p>Where：深圳市龙岗区甘李二路中海信创新产业城</p>
             <p>Who：个人</p>
             <p>What：简约博客</p>
-            <p>Why：加强vue理解、学习全栈式编程、探索更多知识</p>
+            <p>Why：熟悉vue、学习全栈式编程、探索更多知识</p>
         </div>
         <div id="container"></div> 
         <div class="some_cont">
@@ -90,7 +90,7 @@ export default {
             })
         },
         com(){
-            var the_text = /^[\u4E00-\u9FA5A-Za-z0-9，。,.?？!！\s]{1,100}$/
+            var the_text = /^[\u4E00-\u9FA5A-Za-z0-9，。,.?？!！';\s]{1,100}$/
             var that = this
             if(this.yourname.trim() == '' && this.yourcommend.trim() == ''){
                 this.error_name = '请输入昵称哦'
@@ -102,7 +102,7 @@ export default {
                 this.error_text = '请输入表达的内容哦'
                 this.error_name = ''
             }else if(!this.yourcommend.match(the_text)){
-                this.error_text = '评论为1-100的汉字、英文、数字、逗号、句号、感叹号、问号还有空格哦'
+                this.error_text = '评论为1-100的汉字、英文、数字、逗号、句号、感叹号、问号、分号还有空格哦'
                 this.error_name = ''
             }else{
                 // this.obj.push({
@@ -112,14 +112,12 @@ export default {
                  this.$http.post('api/reply',{params:{
                  name : that.yourname,
                  comment : that.yourcommend
-            }}).then(res => {       
-                console.log(res)
-            })
+            }})
                 this.yourname = ''
                 this.yourcommend = ''
                 this.error_text = ''
                 this.error_name = ''
-                this.the_com()               
+                that.the_com()               
             }           
         },
     },
@@ -178,7 +176,7 @@ export default {
                 display: flex;
                 justify-content: space-between;
                 span{
-                    display: inline-block;
+                    font-size: 12px;
                 }
             }
             span{
@@ -195,6 +193,7 @@ export default {
         p{
             margin: 0;
             color: red;
+            font-size: 12px;
         }
         button{
             display: inline-block;
@@ -233,7 +232,7 @@ export default {
             margin: .1rem 0;
             letter-spacing: .1rem;
             big{
-                font-size: .6rem;
+                font-size: 25px;
             }
         }
         p{
