@@ -9,7 +9,11 @@
         </div>
         <div class="text_con" v-for="(v,i) in obj" :key="i">
             <h3 @click="desc(v.id)">{{v.titles}}</h3>
-            <span>{{v.times | formatDate}}</span>
+            <div class="con_divs">
+                <span>类型：{{v.types}}</span>
+                <span>阅读：{{v.views}}</span>
+                <span>时间：{{v.times | formatDate}}</span>
+            </div>        
             <div v-html="v.contents" :class="{hiddens : v.contents.length >= 250}"></div>
             <p @click="desc(v.id)" v-if="v.contents.length >= 250" class="showall">显示全部...</p>
         </div>
@@ -70,15 +74,19 @@ $border_bor : .02rem solid #6896a3;
             height: 6rem;
             overflow: hidden;
         }
-        span{
-            display: block;
-            text-align: center;
-            font-size: 10px;
+        .con_divs{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            span{
+                font-size: 12.5px;
+                font-family: '楷体';
+            }
         }
         h3{
             color: #259;
             margin: 0%;
-            font-size: 18px;
+            font-size: 20px;
             text-align: center;
             cursor: pointer;
         }

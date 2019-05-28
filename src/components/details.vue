@@ -2,7 +2,11 @@
     <div class="details">
         <div class="details_con">
             <h3>{{obj.titles}}</h3>
-            <span>{{obj.times | formatDate}}</span>
+            <div class="con_divs">
+                <span>类型：{{obj.types}}</span>
+                <span>阅读：{{obj.views}}</span>
+                <span>时间：{{obj.times | formatDate}}</span>
+            </div>   
             <div v-html="obj.contents"></div>
         </div>
         <div class="details_com">
@@ -92,6 +96,10 @@ export default {
             }}).then(res => {
                 this.commend_obj = res.data.data
             })
+            // 文章阅读 次数的统计
+            this.$http('api/updateview',{params:{
+                id : this.$route.query.id
+            }})
         }
     },
     mounted(){
@@ -118,15 +126,19 @@ $border_bor : .02rem solid #6896a3;
         border-radius: .2rem;
         border-top: $border_bor;
         text-align: left;
-        span{
-            font-size: 10px;
-            display: block;
-            text-align: center;
+        .con_divs{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            span{
+                font-size: 12.5px;
+                font-family: '楷体';
+            }
         }
         h3{
             color: #259;
             margin: 0%;
-            font-size: 18px;
+            font-size: 20px;
             text-align: center;
         }
         p,>div{ 

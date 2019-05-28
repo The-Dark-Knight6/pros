@@ -75,6 +75,9 @@ export default {
                     id : e
                 }
             })
+            // 点击回到页面顶部 防止滚动条停留在 底部
+            document.body.scrollTop = 0
+            document.documentElement.scrollTop = 0   
         }
     },
     mounted(){

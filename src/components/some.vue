@@ -19,7 +19,7 @@
         <div class="some_cont">
             <span><big>A</big>bout me：</span>
             <p>邮箱：645865839@qq.com</p>
-            <p>Github: <a href="http://github.com/The-Dark-Knight6" target="_blank">@Classmate_Fu</a></p>
+            <p>Github: <a href="https://github.com/The-Dark-Knight6" target="_blank">@Classmate_Fu</a></p>
             <p>weibo：<a href="https://weibo.com/u/6096309423?is_all=1" target="_blank">@老付一枚</a></p>
             <p>网易：<a href="https://music.163.com/#/user/home?id=535760156" target="_blank">@老付一枚</a></p>
             <img v-lazy="img2" title="About me" alt="self">
@@ -34,7 +34,7 @@
             <span><big>彩</big>蛋：</span>
             <p><a href="http://www.mvcat.com/music/" target="_blank">+ 全网音乐</a></p>
             <p><a href="http://yunkus.com/front-end-web-develoment/" target="_blank">+ 前端宝典</a></p>
-            <p><a href="https://developer.mozilla.org/zh-CN/">+ MDN</a></p>
+            <p><a href="https://developer.mozilla.org/zh-CN/" target="_blank">+ MDN</a></p>
         </div>
         <div class="real_com">
             <span>真知灼见：</span><br>
@@ -176,7 +176,7 @@ export default {
                 display: flex;
                 justify-content: space-between;
                 span{
-                    font-size: 12px;
+                    font-size: 13px;
                 }
             }
             span{

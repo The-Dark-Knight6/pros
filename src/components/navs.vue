@@ -126,7 +126,7 @@ export default {
                 display: inline-block;
                 font-size: .35rem;
                 color: #ccc;
-                padding: .1rem;
+                padding: 5px 10px;
                 @include hover_border;
                 &:hover{
                     transition: .6s;

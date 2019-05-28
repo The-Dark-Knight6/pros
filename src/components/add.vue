@@ -12,6 +12,7 @@
                 <label for="poem"><input type="radio" id="poem" v-model="types" value="poem">辞海</label>
             </div>
             <input type="text" name="title" v-model="title" maxlength="25" placeholder="文章标题">
+            <input type="text" name="type" v-model="art_type" maxlength="6" placeholder="文章类型" v-if="types == 'text'">
             <!-- 引入 富文本编辑器 -->
             <div class="edit_container">
                 <quill-editor
@@ -38,6 +39,7 @@ export default {
             content : '',   
             myname : '',
             mypass : '',
+            art_type : '',
             editorOption: {},
             types : 'text'
         }
@@ -72,11 +74,12 @@ export default {
         // 发布文字(文章或者词句) 传送数据到数据库
         pub(){
             var that = this
-            var sures = this.title.trim() != '' && this.content.trim() != ''
+            var sures = this.title.trim() != '' && this.content.trim() != '' && this.art_type.trim()
             if(this.types === 'text' && sures){
                 this.$http.post('api/addtext',{params:{
                     title : that.title,
-                    article : that.content
+                    article : that.content,
+                    type : that.art_type
                 }})
                 alert('发布成功，兄弟...')
             }else if(this.types === 'poem' && sures){
