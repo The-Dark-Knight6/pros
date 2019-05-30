@@ -27,9 +27,6 @@
             <span><big>文</big>章检索：</span>
             <div v-for="(v,i) in obj_txt" :key="i">
                 <p @click="totext(v.id)" style="cursor: pointer">{{v.titles}}</p>
-                <p v-if="v.length >= 5" class="showmore">
-                    <router-link :to="{path:'/text'}">显示更多...</router-link>
-                </p>
             </div>
         </div>
         <div class="host_cont">
@@ -39,9 +36,6 @@
             <span><big>辞</big>海检索：</span>
             <div v-for="(v,i) in obj_poem" :key="i">
                 <p>{{v.titles}}</p>
-                <p v-if="v.length >= 5" class="showmore">
-                    <router-link :to="{path:'/poem'}">显示更多...</router-link>
-                </p>
             </div>
         </div>
     </div>

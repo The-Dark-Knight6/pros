@@ -12,6 +12,8 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import VueLazyload from 'vue-lazyload' //图片懒加载 将:src换成v-lazy
+import ElementUI from 'element-ui'; // 引入elementui
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.config.productionTip = false
 Vue.component('foots',foots)
@@ -19,6 +21,7 @@ Vue.component('navs',navs)
 Vue.prototype.$http = axios
 Vue.use(VueQuillEditor)
 Vue.use(VueLazyload)
+Vue.use(ElementUI);
 
 /* eslint-disable no-new */
 new Vue({

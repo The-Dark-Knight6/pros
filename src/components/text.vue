@@ -1,12 +1,5 @@
 <template>
     <div class="text">
-        <div class="text_con">
-            <h3>构建网站</h3>
-            <p>个人建造网站对于程序员来讲应该是比较基础的操作，不迁就丝毫的商业利益,
-                这是一种纯碎的热爱，源于对代码世界的探索，也是应了一句古老的话语：
-                因为热爱，所以行动。
-            </p>            
-        </div>
         <div class="text_con" v-for="(v,i) in obj" :key="i">
             <h3 @click="desc(v.id)">{{v.titles}}</h3>
             <div class="con_divs">

@@ -74,15 +74,16 @@ export default {
         // 发布文字(文章或者词句) 传送数据到数据库
         pub(){
             var that = this
-            var sures = this.title.trim() != '' && this.content.trim() != '' && this.art_type.trim()
-            if(this.types === 'text' && sures){
+            var sure_text = this.title.trim() != '' && this.content.trim() != '' && this.art_type.trim()
+            var sure_poem = this.title.trim() != '' && this.content.trim()
+            if(this.types === 'text' && sure_text){
                 this.$http.post('api/addtext',{params:{
                     title : that.title,
                     article : that.content,
                     type : that.art_type
                 }})
                 alert('发布成功，兄弟...')
-            }else if(this.types === 'poem' && sures){
+            }else if(this.types === 'poem' && sure_poem){
                 this.$http.post('api/poems',{params:{
                     title : that.title,
                     poem : that.content

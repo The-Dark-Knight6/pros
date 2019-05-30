@@ -1,17 +1,15 @@
 <template>
     <div class="poem">
-        <div class="poem_con">
-            <p>清平调·其一</p>
-<pre>
-云想衣裳花想容，
-春风拂槛露华浓。
-若非群玉山头见，
-会向瑶台月下逢。
-</pre>
-        </div>
         <div class="poem_con" v-for="(v,i) in obj" :key="i">
             <p>{{v.titles}}</p>
             <div v-html="v.words"></div>
+        </div>
+        <div class="block">
+            <el-pagination
+                layout="prev, pager, next"
+                :page-size="5"
+                :total="obj.length">
+            </el-pagination>
         </div>
     </div>
 </template>
@@ -20,10 +18,21 @@
 export default {
     data(){
         return{
-            obj : []
+            obj : [],
+            currentPage1: 5,
+            the : {
+                b_pages : 0,
+                a_pages : 5
+            }
         }
     },
     methods : {
+         handleSizeChange(val) {
+            console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+            console.log(`当前页: ${val}`);
+        },
         getpoems(){
             this.$http.get('api/findpoems').then(res => {
                 this.obj = res.data.data
