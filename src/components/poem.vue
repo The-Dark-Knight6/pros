@@ -1,13 +1,15 @@
 <template>
     <div class="poem">
-        <div class="poem_con" v-for="(v,i) in obj" :key="i">
-            <p>{{v.titles}}</p>
+        <div class="poem_con" v-for="(v,i) in obj.slice((currentPage-1)*pagesize,currentPage*pagesize)" :key="i">
+            <h3>{{v.titles}}</h3>
             <div v-html="v.words"></div>
         </div>
         <div class="block">
             <el-pagination
                 layout="prev, pager, next"
-                :page-size="5"
+                :page-size="pagesize"
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
                 :total="obj.length">
             </el-pagination>
         </div>
@@ -19,19 +21,16 @@ export default {
     data(){
         return{
             obj : [],
-            currentPage1: 5,
-            the : {
-                b_pages : 0,
-                a_pages : 5
-            }
+            currentPage: 1, // 初始的页数
+            pagesize : 5 // 每页的显示数量
         }
     },
     methods : {
-         handleSizeChange(val) {
-            console.log(`每页 ${val} 条`);
+        handleSizeChange(val) {
+            this.pagesize = val
         },
         handleCurrentChange(val) {
-            console.log(`当前页: ${val}`);
+            this.currentPage = val
         },
         getpoems(){
             this.$http.get('api/findpoems').then(res => {
@@ -54,9 +53,16 @@ $border_bor : .02rem solid #6896a3;
         border-top: $border_bor;
         text-align: center;
         word-break: break-all;
+        h3{
+           color: #259;
+            margin:.15rem 0%;
+            font-size: 20px;
+            text-align: center;
+            cursor: pointer; 
+        }
         p{
             color: #259;
-            margin: .2rem 0;
+            margin: .18rem 0;
             word-break: break-all; //允许在单词内部换行 长单词换行
         }
         pre{

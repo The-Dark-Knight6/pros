@@ -14,7 +14,7 @@
             <p>· 少即是多</p>
             <p>· 没有消息就是最好的消息</p>
             <p>· 音乐是一种生活方式</p> 
-            <img v-lazy="img1" title="风格简述" alt="mui">
+            <el-image :src="img1" lazy title="风格简述"></el-image>
         </div>
         <div class="some_cont">
             <span><big>A</big>bout me：</span>
@@ -22,13 +22,13 @@
             <p>Github: <a href="https://github.com/The-Dark-Knight6" target="_blank">@Classmate_Fu</a></p>
             <p>weibo：<a href="https://weibo.com/u/6096309423?is_all=1" target="_blank">@老付一枚</a></p>
             <p>网易：<a href="https://music.163.com/#/user/home?id=535760156" target="_blank">@老付一枚</a></p>
-            <img v-lazy="img2" title="About me" alt="self">
+            <el-image :src="img2" lazy title="About me"></el-image>
         </div>
         <div class="some_cont">
             <span><big>友</big>情链接：</span>
             <p>- -><a href="https://www.zzhihong.com/" target="_blank">秘密基地</a></p>
             <p>- -><a href="https://www.shenzilong.cn/" target="_blank">崮生</a></p>
-            <img v-lazy="img3" title="友情链接" alt="contact">
+            <el-image :src="img3" lazy title="友情链接"></el-image>
         </div>
         <div class="some_cont">
             <span><big>彩</big>蛋：</span>
@@ -40,7 +40,7 @@
             <span>真知灼见：</span><br>
             <p v-if="obj.length == 0">还没有高人指点呢~马上抢沙发吧~</p>
             <ul>
-                <li v-for="(com,index) in obj" :key="index">
+                <li v-for="(com,index) in obj.slice((currentPage-1)*pagesize,pagesize*currentPage)" :key="index">
                     <div class="li_span">
                         <span>#{{index+1}}楼：{{com.name}}</span>
                         <span>{{com.times | formatDate}}</span>
@@ -48,6 +48,15 @@
                     <p>{{com.comments}}</p>
                 </li>
             </ul>
+        </div>
+        <div style="text-align:center">
+            <el-pagination
+                layout="prev, pager, next"
+                :page-size="pagesize"
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :total="obj.length">
+            </el-pagination>
         </div>
         <div class="some_commend">
             <span>留下足迹：</span><br>
@@ -81,9 +90,17 @@ export default {
             img1 : require('../assets/323888.jpg'),
             img2 : require('../assets/280745.jpg'),
             img3 : require('../assets/318553.jpg'),
+            currentPage : 1, // 当前评论页码
+            pagesize : 10 // 每页评论显示的数量
         }
     },
     methods : {
+        handleSizeChange(e){
+            this.pagesize = e
+        },
+        handleCurrentChange(e){
+            this.currentPage = e
+        },
         the_com(){
             this.$http.get('api/users').then(res => {
                 this.obj = res.data.data
@@ -117,7 +134,11 @@ export default {
                 this.yourcommend = ''
                 this.error_text = ''
                 this.error_name = ''
-                that.the_com()               
+                that.the_com()          
+                this.$message({
+                    message: '发布成功了哟~',
+                    type: 'success'
+                });     
             }           
         },
     },

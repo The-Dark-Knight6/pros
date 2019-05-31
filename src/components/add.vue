@@ -22,7 +22,7 @@
                     @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
                     @change="onEditorChange($event)">
                 </quill-editor>
-            <button @click="pub">保存</button>
+            <el-button @click="pub"> 发  布 </el-button>
         </div>
         </div>
     </div>
@@ -82,13 +82,19 @@ export default {
                     article : that.content,
                     type : that.art_type
                 }})
-                alert('发布成功，兄弟...')
+                this.$message({
+                    message: '发布成功，兄弟...',
+                    type: 'success'
+                });
             }else if(this.types === 'poem' && sure_poem){
                 this.$http.post('api/poems',{params:{
                     title : that.title,
                     poem : that.content
                 }})
-                alert('发布成功，兄弟...')
+                this.$message({
+                    message: '发布成功，兄弟...',
+                    type: 'success'
+                });
             }else{
                 console.log('不要输入空的啊，兄弟...')
             }

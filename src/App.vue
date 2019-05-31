@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <navs></navs>
+    <navs id="fly"></navs>
     <router-view id="views"/>
     <foots></foots>
   </div>
@@ -40,3 +40,4 @@ ul{
   }
 }
 </style>
+

@@ -24,16 +24,49 @@
         <div class="load_title">welcome to myblog<br><span>只因在人群中多看了你一眼</span></div>
     </div>
   </body>
+  <style>
+  @keyframes mysnow {
+	0% { bottom: 100%; opacity: 0; }
+	50% { opacity: 1; transform: rotate(720deg);}
+	100% { transform: rotate(0deg); opacity: 0; bottom: 0%;}
+}
+.container { position: fixed}
+.pic { position: absolute; opacity: 0; animation: mysnow 5s;height: 30px; }
+  </style>
 </html>
 <script>
-  // 禁止右键点击  页面加载延迟动画
   window.onload = function () {
+    // 雪花生成函数
+    function snowFlow(left,height,src){
+			var container=document.createElement('div');
+			var pic=document.createElement('img');
+			var snowFlow=document.getElementById('fly'); //navs（即导航栏模块）下生成雪花
+			pic.className='pic';
+			container.className='container';	
+			snowFlow.appendChild(container);
+			container.appendChild(pic);
+			container.style.left=left+'px';
+			container.style.height=height+'px';
+      pic.src=src;
+      // 一个雪花停留的时间为5s 
+			setTimeout(function(){
+				snowFlow.removeChild(container);
+			},5000);
+		} //每300毫秒生产一个雪花
+			setInterval(function(){
+				var left=Math.random()*window.innerWidth;
+				var height=Math.random()*window.innerHeight;
+				var src = '/static/snow.png';
+				snowFlow(left,height,src);
+      },300)
+      //禁止鼠标右键点击
     document.oncontextmenu = function(){
       return false;
     }
-    $('body').addClass('loaded');
-    $('#loader-wrapper .load_title').remove();
-    console.log("%c码农世界行人稀,\n常有车手较高低.\n如今代码依旧在,\n不见当年乔司机.","color:#145dbf;");
+    //页面载入加载动画
+      $('body').addClass('loaded');
+      $('#loader-wrapper .load_title').remove();
+      console.log("%c码农世界行人稀,\n常有车手较高低.\n如今代码依旧在,\n不见当年乔司机.","color:#145dbf;");
     }
     // 鼠标点击特效
 var mouseSum = 0;

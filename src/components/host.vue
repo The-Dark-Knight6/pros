@@ -21,20 +21,20 @@
             <p>#辞海：摘录诗、歌、词。</p>
             <p>#娱乐：抛硬币</p>
             <p>#关于：尾声，提供评论、友链、彩蛋。</p>           
-            <img v-lazy="img1" alt="loading" title="写在之前">
+            <el-image :src="img1" lazy title="写在之前"></el-image>
         </div>
         <div class="host_cont">
-            <span><big>文</big>章检索：</span>
-            <div v-for="(v,i) in obj_txt" :key="i">
+            <span><big>最</big>新文章：</span>
+            <div v-for="(v,i) in obj_txt.slice(0,5)" :key="i">
                 <p @click="totext(v.id)" style="cursor: pointer">{{v.titles}}</p>
             </div>
         </div>
         <div class="host_cont">
-            <img v-lazy="img2" alt="loading" title="总镖">
+            <el-image :src="img2" lazy title="总镖"></el-image>
         </div>
         <div class="host_cont">
-            <span><big>辞</big>海检索：</span>
-            <div v-for="(v,i) in obj_poem" :key="i">
+            <span><big>最</big>新辞藻：</span>
+            <div v-for="(v,i) in obj_poem.slice(0,5)" :key="i">
                 <p>{{v.titles}}</p>
             </div>
         </div>

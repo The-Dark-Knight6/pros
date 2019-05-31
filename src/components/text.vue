@@ -1,6 +1,6 @@
 <template>
     <div class="text">
-        <div class="text_con" v-for="(v,i) in obj" :key="i">
+        <div class="text_con" v-for="(v,i) in obj.slice((currentPage-1)*pagesize,pagesize*currentPage)" :key="i">
             <h3 @click="desc(v.id)">{{v.titles}}</h3>
             <div class="con_divs">
                 <span>类型：{{v.types}}</span>
@@ -9,6 +9,15 @@
             </div>        
             <div v-html="v.contents" :class="{hiddens : v.contents.length >= 250}"></div>
             <p @click="desc(v.id)" v-if="v.contents.length >= 250" class="showall">显示全部...</p>
+        </div>
+        <div class="block">
+            <el-pagination
+                layout="prev, pager, next"
+                :page-size="pagesize"
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :total="obj.length">
+            </el-pagination>
         </div>
     </div>
 </template>
@@ -25,10 +34,19 @@ export default {
     },
     data(){
         return{
+            // 利用 slice()函数处理前端的分页
             obj : [],
+            currentPage : 1,
+            pagesize : 5
         }
     },
     methods : {
+        handleSizeChange(e){
+            this.pagesize = e
+        },
+        handleCurrentChange(e){
+            this.currentPage = e
+        },
         gettext(){
             this.$http.get('api/findtext').then(res => {
                 this.obj = res.data.data
@@ -88,6 +106,7 @@ $border_bor : .02rem solid #6896a3;
             word-break: break-all; //允许在单词内部换行 长单词换行
         }
         p.showall{
+            font-size: 12.6px;
             cursor: pointer;
             color:#6896a3;
         }

@@ -28,7 +28,7 @@
             <p>{{error_name}}</p>
             <textarea name="comment" v-model="yourcommend" rows="3" maxlength="100" placeholder="您的想法"></textarea>
             <p>{{error_text}}</p>
-            <button @click="com">评论</button>
+            <button @click="com" :plain="true">评论</button>
         </div>
     </div>    
 </template>
@@ -88,6 +88,10 @@ export default {
                 this.error_text = ''
                 this.error_name = ''
                 that.fincom()
+                this.$message({
+                    message: '发布成功了哟~',
+                    type: 'success'
+                });
             }           
         },
         fincom(){

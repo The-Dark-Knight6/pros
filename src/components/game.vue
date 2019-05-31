@@ -13,7 +13,7 @@
         </div>
          <div class="game_cont">
             <i class="spaci">Choice is more important than effort</i>
-            <img v-lazy="img1" title="choice" alt="mui">
+            <el-image :src="img1" lazy title="choice" alt="mui"></el-image>
         </div>
     </div>
 </template>
@@ -71,7 +71,7 @@ i.spaci{
         transform: translateY(6rem) rotate(360deg);
         opacity: .2;
     }to{
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(0) rotate(-360deg);
         opacity: 1;
     }
 }
