@@ -64,7 +64,7 @@
             <p>{{error_name}}</p>
             <textarea name="comment" v-model="yourcommend" rows="3" maxlength="100" placeholder="您的想法"></textarea>
             <p>{{error_text}}</p>
-            <button @click="com">评论</button>
+            <button round @click="com()" :plain="true">{{public_text}}</button>
         </div>
     </div>
 </template>
@@ -91,7 +91,8 @@ export default {
             img2 : require('../assets/280745.jpg'),
             img3 : require('../assets/318553.jpg'),
             currentPage : 1, // 当前评论页码
-            pagesize : 10 // 每页评论显示的数量
+            pagesize : 10, // 每页评论显示的数量
+            public_text : '发 布'
         }
     },
     methods : {
@@ -108,7 +109,7 @@ export default {
         },
         com(){
             var the_text = /^[\u4E00-\u9FA5A-Za-z0-9，。,.?？!！';\s]{1,100}$/
-            var that = this
+            var that = this 
             if(this.yourname.trim() == '' && this.yourcommend.trim() == ''){
                 this.error_name = '请输入昵称哦'
                 this.error_text = '请输入表达的内容哦'
@@ -125,7 +126,7 @@ export default {
                 // this.obj.push({
                 //     name : this.yourname,
                 //     commend : this.yourcommend  
-                // })
+                // }) 
                  this.$http.post('api/reply',{params:{
                  name : that.yourname,
                  comment : that.yourcommend
@@ -139,7 +140,8 @@ export default {
                     message: '发布成功了哟~',
                     type: 'success'
                 });     
-            }           
+            }
+                     
         },
     },
  mounted(){

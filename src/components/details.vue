@@ -28,7 +28,7 @@
             <p>{{error_name}}</p>
             <textarea name="comment" v-model="yourcommend" rows="3" maxlength="100" placeholder="您的想法"></textarea>
             <p>{{error_text}}</p>
-            <button @click="com" :plain="true">评论</button>
+            <el-button type="primary" round @click="com" :plain="true">发 布</el-button>
         </div>
     </div>    
 </template>
