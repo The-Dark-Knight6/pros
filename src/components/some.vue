@@ -64,7 +64,7 @@
             <p>{{error_name}}</p>
             <textarea name="comment" v-model="yourcommend" rows="3" maxlength="100" placeholder="您的想法"></textarea>
             <p>{{error_text}}</p>
-            <button round @click="com()" :plain="true">{{public_text}}</button>
+            <input type="button" round @click="com()" ref="add_commned" :plain="true" :value="public_text" class="button">
         </div>
     </div>
 </template>
@@ -107,6 +107,21 @@ export default {
                 this.obj = res.data.data
             })
         },
+        // 评论延迟时间限定
+        control_com(ti){
+            if(ti == 0){
+                this.public_text = '发 布';
+                this.$refs.add_commned.disabled = '';
+                return ;
+            }else{
+                this.$refs.add_commned.disabled = 'disabled';
+                this.public_text = `${ti}s后再次发布`;
+                ti --;
+            }
+            setTimeout(()=>{
+                this.control_com(ti)
+            },1000)
+        },
         com(){
             var the_text = /^[\u4E00-\u9FA5A-Za-z0-9，。,.?？!！';\s]{1,100}$/
             var that = this 
@@ -139,9 +154,9 @@ export default {
                 this.$message({
                     message: '发布成功了哟~',
                     type: 'success'
-                });     
+                })
+               this.control_com(66);     
             }
-                     
         },
     },
  mounted(){
@@ -218,7 +233,7 @@ export default {
             color: red;
             font-size: 12px;
         }
-        button{
+        input.button{
             display: inline-block;
             padding: .07rem;
             width: 2rem;

@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <navs id="fly"></navs>
-    <router-view id="views"/>
+    <keep-alive>
+      <router-view id="views"/>
+    </keep-alive>
     <foots></foots>
   </div>
 </template>
