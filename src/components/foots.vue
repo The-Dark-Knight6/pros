@@ -1,8 +1,8 @@
 <template>
     <div class="foots">
-        <p class="desc"> - - 寄浮游于天地，渺沧海之一粟 - - </p>
+        <p class="desc"> - 寄浮游于天地，渺沧海之一粟 - </p>
         <p class="tips">
-           <span>Copyright ⓒ {{the_year}} 小付同学 版权所有</span>
+           <span>Copyright ⓒ {{the_year}} 小付同学</span>
             <img src="../assets/bg6.png" alt="backgournd_img">
            <span>粤ICP备19054851号-1</span>   
         </p>

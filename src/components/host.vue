@@ -21,16 +21,16 @@
             <p>#辞海：摘录诗、歌、词。</p>
             <p>#娱乐：抛硬币</p>
             <p>#关于：尾声，提供评论、友链、彩蛋。</p>           
-            <el-image :src="img1" lazy title="写在之前"></el-image>
+            <img v-lazy="img1" title="写在之前"/>
         </div>
         <div class="host_cont">
-            <span><big>最</big>新文章：</span>
-            <div v-for="(v,i) in obj_txt.slice(0,5)" :key="i">
-                <p @click="totext(v.id)" style="cursor: pointer">{{v.titles}}</p>
+            <span><big>最</big>热文章：</span>
+            <div v-for="(v,i) in obj_txt" :key="i">
+                <p @click="totext(v.id)" class="hot_title">{{v.titles}}</p>
             </div>
         </div>
         <div class="host_cont">
-            <el-image :src="img2" lazy title="总镖"></el-image>
+            <img v-lazy="img2" title="总镖"/>
         </div>
         <div class="host_cont">
             <span><big>最</big>新辞藻：</span>
@@ -53,7 +53,7 @@ export default {
     },
     methods : {
         gettext(){
-            this.$http.get('api/findtext').then(res => {
+            this.$http.get('api/hottext').then(res => {
                 this.obj_txt = res.data.data
             })
         },
@@ -91,7 +91,7 @@ $border_bor : .02rem dotted #6896a3;
             width: 100%;
             border-radius: .12rem;
         }
-        span{
+        >span{
             border-bottom: .06rem solid gainsboro;
             display: inline-block;
             margin: .1rem 0;
@@ -107,10 +107,15 @@ $border_bor : .02rem dotted #6896a3;
         p{
             color: #1c385d;
             letter-spacing: .02rem;
-            margin: .2rem 0;
+            margin: .25rem 0;
             word-break: break-all; //允许在单词内部换行 长单词换行
             a{
                 text-decoration: none;
+            }
+            &.hot_title:hover{
+                cursor: pointer;
+                color: rgb(55, 55, 231);
+                transition: .2s;
             }
         }
     }

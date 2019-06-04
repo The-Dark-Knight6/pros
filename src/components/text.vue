@@ -12,6 +12,7 @@
         </div>
         <div class="block">
             <el-pagination
+                pager-count="5"
                 layout="prev, pager, next"
                 :page-size="pagesize"
                 @size-change="handleSizeChange"
@@ -37,7 +38,7 @@ export default {
             // 利用 slice()函数处理前端的分页
             obj : [],
             currentPage : 1,
-            pagesize : 5
+            pagesize : 5,
         }
     },
     methods : {
@@ -45,7 +46,9 @@ export default {
             this.pagesize = e
         },
         handleCurrentChange(e){
-            this.currentPage = e
+            this.currentPage = e;
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;  
         },
         gettext(){
             this.$http.get('api/findtext').then(res => {

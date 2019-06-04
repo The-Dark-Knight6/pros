@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <navs id="fly"></navs>
-    <keep-alive>
       <router-view id="views"/>
-    </keep-alive>
     <foots></foots>
   </div>
 </template>
@@ -40,6 +38,12 @@ ul{
     margin: .2rem 30%;
     transition: .6s;
   }
+}
+</style>
+
+<style lang="scss" scoped>
+/deep/ .el-image__inner{
+  border-radius: 5px;
 }
 </style>
 

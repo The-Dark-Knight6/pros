@@ -2,11 +2,11 @@
     <div class="some">
         <div class="some_cont">
             <span><big>自</big>定义：</span>
-            <p>When：2019-05-12 00：00 夜</p>
+            <p>When：2019-05-11 13：14 晴</p>
             <p>Where：深圳市龙岗区甘李二路中海信创新产业城</p>
             <p>Who：个人</p>
             <p>What：简约博客</p>
-            <p>Why：熟悉vue、学习全栈式编程、探索更多知识</p>
+            <p>Why：学习全栈式编程、探索更多知识</p>  
         </div>
         <div id="container"></div> 
         <div class="some_cont">
@@ -14,7 +14,8 @@
             <p>· 少即是多</p>
             <p>· 没有消息就是最好的消息</p>
             <p>· 音乐是一种生活方式</p> 
-            <el-image :src="img1" lazy title="风格简述"></el-image>
+            <p>· 花里胡哨</p>
+            <img v-lazy="imgs[0]" title="风格简述"/>
         </div>
         <div class="some_cont">
             <span><big>A</big>bout me：</span>
@@ -22,13 +23,13 @@
             <p>Github: <a href="https://github.com/The-Dark-Knight6" target="_blank">@Classmate_Fu</a></p>
             <p>weibo：<a href="https://weibo.com/u/6096309423?is_all=1" target="_blank">@老付一枚</a></p>
             <p>网易：<a href="https://music.163.com/#/user/home?id=535760156" target="_blank">@老付一枚</a></p>
-            <el-image :src="img2" lazy title="About me"></el-image>
+            <img v-lazy="imgs[1]" title="About me"/>
         </div>
         <div class="some_cont">
             <span><big>友</big>情链接：</span>
             <p>- -><a href="https://www.zzhihong.com/" target="_blank">秘密基地</a></p>
             <p>- -><a href="https://www.shenzilong.cn/" target="_blank">崮生</a></p>
-            <el-image :src="img3" lazy title="友情链接"></el-image>
+            <img v-lazy="imgs[2]" title="友情链接"/>
         </div>
         <div class="some_cont">
             <span><big>彩</big>蛋：</span>
@@ -51,6 +52,7 @@
         </div>
         <div style="text-align:center">
             <el-pagination
+                pager-count="5"
                 layout="prev, pager, next"
                 :page-size="pagesize"
                 @size-change="handleSizeChange"
@@ -87,9 +89,14 @@ export default {
             yourcommend : '',
             error_text : '',
             error_name :'',
-            img1 : require('../assets/323888.jpg'),
-            img2 : require('../assets/280745.jpg'),
-            img3 : require('../assets/318553.jpg'),
+            imgs : [
+                require('../assets/323888.jpg'),
+                require('../assets/280745.jpg'),
+                require('../assets/318553.jpg')
+            ],
+            // img1 : require('../assets/323888.jpg'),
+            // img2 : require('../assets/280745.jpg'),
+            // img3 : require('../assets/318553.jpg'),
             currentPage : 1, // 当前评论页码
             pagesize : 10, // 每页评论显示的数量
             public_text : '发 布'

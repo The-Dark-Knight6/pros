@@ -13,7 +13,7 @@
         </div>
          <div class="game_cont">
             <i class="spaci">Choice is more important than effort</i>
-            <el-image :src="img1" lazy title="choice" alt="mui"></el-image>
+            <img v-lazy="img1" title="choice" alt="mui"/>
         </div>
     </div>
 </template>

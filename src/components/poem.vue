@@ -6,6 +6,7 @@
         </div>
         <div class="block">
             <el-pagination
+                pager-count="5"
                 layout="prev, pager, next"
                 :page-size="pagesize"
                 @size-change="handleSizeChange"
@@ -30,7 +31,9 @@ export default {
             this.pagesize = val
         },
         handleCurrentChange(val) {
-            this.currentPage = val
+            this.currentPage = val;
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
         },
         getpoems(){
             this.$http.get('api/findpoems').then(res => {

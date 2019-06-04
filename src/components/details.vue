@@ -28,7 +28,7 @@
             <p>{{error_name}}</p>
             <textarea name="comment" v-model="yourcommend" rows="3" maxlength="100" placeholder="您的想法"></textarea>
             <p>{{error_text}}</p>
-            <el-button type="primary" round @click="com" :plain="true">发 布</el-button>
+            <input type="button" class="button" ref="put_commend" round @click="com" :plain="true" :value="put_text">
         </div>
     </div>    
 </template>
@@ -51,9 +51,24 @@ export default {
             yourcommend : '',
             error_text : '',
             error_name :'',
+            put_text : '发 布'
         }
     },
     methods:{
+        control_put(t){
+            if(t == 0){
+                this.put_text = '发 布';
+                this.$refs.put_commend.disabled = '';
+                return ;
+            }else{
+                this.$refs.put_commend.disabled = 'disabled';
+                this.put_text = `${t}s后再次发布`;
+                t --;
+            }
+            setTimeout(() => {
+                this.control_put(t);
+            },1000)
+        },
         gettexts(){
             this.$http('api/detail',{params:{
                 // $route 当前正在使用的路由对象，$router 全局路由对象 此处获取当前页的id参数
@@ -87,11 +102,12 @@ export default {
                 this.yourcommend = ''
                 this.error_text = ''
                 this.error_name = ''
-                that.fincom()
+                this.fincom()
                 this.$message({
                     message: '发布成功了哟~',
                     type: 'success'
-                });
+                })
+                this.control_put(66);
             }           
         },
         fincom(){
@@ -186,7 +202,7 @@ $border_bor : .02rem solid #6896a3;
             color: red;
             font-size: 12px;
         }
-        button{
+        input.button{
             display: inline-block;
             padding: .07rem;
             width: 2rem;
@@ -195,6 +211,8 @@ $border_bor : .02rem solid #6896a3;
             border-radius: .2rem;
             border: .01rem solid #a4a4fd;
             margin-top: .2rem;
+            text-align: center;
+            cursor: pointer;
         }
         span{
             border-bottom: .06rem solid gainsboro;

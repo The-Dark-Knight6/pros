@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+// import Vue from 'vue'
+import VueRouter from 'vue-router'
 // import host from '@/components/host' //主页
 // import poem from '@/components/poem' //诗词页面
 // import some from '@/components/some' //关于页面
@@ -8,9 +8,9 @@ import Router from 'vue-router'
 // import add from '@/components/add' //添加文章、诗词页面 仅限自己
 // import details from '@/components/details'  //文章详细页面
 
-Vue.use(Router)
+// Vue.use(Router)
 
-export default new Router({
+const appRouter = {
   mode : 'history',
   routes : [
     {
@@ -42,8 +42,8 @@ export default new Router({
       component : resolve => require(['@/components/details'],resolve)
     }
   ]
-})
-
+}
+export default new VueRouter(appRouter)
 // export default new Router({
 //   mode : 'history',
 //   routes: [

@@ -1,9 +1,9 @@
 <template>
     <div class="add">
         <div class="login" v-if="!myself">
-            <input type="text" v-model="myname" placeholder="主人名"><br>
-            <input type="password" v-model="mypass" placeholder="主人密码">
-            <button @click="toadd">show time</button>
+            <el-input type="text" v-model="myname" maxlength="10" placeholder="主人名"></el-input><br>
+            <el-input type="password" v-model="mypass" maxlength="10" placeholder="主人密码"></el-input>
+            <el-button @click="toadd">show time</el-button>
         </div>
         <div class="realme" v-if="myself">
             <!-- 选择发布文字的类型   默认为 文章-->
@@ -11,24 +11,57 @@
                 <label for="text"><input type="radio" id="text" v-model="types" value="text">文章</label>
                 <label for="poem"><input type="radio" id="poem" v-model="types" value="poem">辞海</label>
             </div>
-            <input type="text" name="title" v-model="title" maxlength="25" placeholder="文章标题">
-            <input type="text" name="type" v-model="art_type" maxlength="6" placeholder="文章类型" v-if="types == 'text'">
+            <el-input type="text" name="title" v-model="title" maxlength="25" placeholder="文章标题"></el-input>
+            <el-input type="text" name="type" v-model="art_type" maxlength="6" placeholder="文章类型" v-if="types == 'text'"></el-input>
             <!-- 引入 富文本编辑器 -->
             <div class="edit_container">
-                <quill-editor
-                    v-model="content" 
-                    ref="myQuillEditor" 
-                    :options="editorOption" 
-                    @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
-                    @change="onEditorChange($event)">
-                </quill-editor>
-            <el-button @click="pub"> 发  布 </el-button>
+                <el-upload
+                    class="avatar-uploader"
+                    :action="serverUrl"
+                    name="img"
+                    :headers="header"
+                    :show-file-list="false"
+                    :on-success="uploadSuccess"
+                    :on-error="uploadError"
+                    :before-upload="beforeUpload">
+                </el-upload>
+                <el-row v-loading="uillUpdateImg">
+                    <quill-editor
+                        v-model="content" 
+                        ref="myQuillEditor" 
+                        :options="editorOption" 
+                        @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
+                        @change="onEditorChange($event)">
+                    </quill-editor>
+                 </el-row>
+                 
+            <el-button @click="pub">发布</el-button>
         </div>
         </div>
     </div>
 </template>
 
 <script>
+// 工具栏配置
+const toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
+
+  [{'header': 1}, {'header': 2}],               // custom button values
+  [{'list': 'ordered'}, {'list': 'bullet'}],
+  [{'script': 'sub'}, {'script': 'super'}],      // superscript/subscript
+  [{'indent': '-1'}, {'indent': '+1'}],          // outdent/indent
+  [{'direction': 'rtl'}],                         // text direction
+
+  [{'size': ['small', false, 'large', 'huge']}],  // custom dropdown
+  [{'header': [1, 2, 3, 4, 5, 6, false]}],
+
+  [{'color': []}, {'background': []}],          // dropdown with defaults from theme
+  [{'font': []}],
+  [{'align': []}],
+  ['link', 'image', 'video'],
+  ['clean']                                         // remove formatting button
+]
 export default {
 
     data(){
@@ -41,7 +74,29 @@ export default {
             mypass : '',
             art_type : '',
             editorOption: {},
-            types : 'text'
+            types : 'text',
+            quillUpdateImg: false, // 根据图片上传状态来确定是否显示loading动画，刚开始是false,不显示
+            serverUrl: '',  // 这里写你要上传的 图片服务器地址
+            header: {token: sessionStorage.token},  // 有的图片服务器要求请求头需要有token之类的参数，写在这里
+            detailContent: '', // 富文本内容
+            editorOption: {
+                placeholder: '',
+                theme: 'snow',  // or 'bubble'
+                modules: {
+                    toolbar: {
+                        container: toolbarOptions,  // 工具栏
+                         handlers: {
+                            'image': function (value) {
+                            if (value) {
+                                document.querySelector('.avatar-uploader input').click()
+                            } else {
+                                this.quill.format('image', false);
+                            }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
      computed: {
@@ -50,6 +105,35 @@ export default {
         },
     },
     methods : {
+        // 上传图片前
+        beforeUpload(res, file) {
+             this.quillUpdateImg = true
+        },
+        // 上传图片成功
+        uploadSuccess(res, file) {
+            // res为图片服务器返回的数据
+                // 获取富文本组件实例
+                let quill = this.$refs.myQuillEditor.quill
+                // 如果上传成功
+                if (res.code === '200' && res.info !== null) {
+                    // 获取光标所在位置
+                    let length = quill.getSelection().index;
+                    // 插入图片  res.info为服务器返回的图片地址
+                    quill.insertEmbed(length, 'image', res.info)
+                    // 调整光标到最后
+                    quill.setSelection(length + 1)
+                } else {
+                    this.$message.error('图片插入失败')
+                }
+                // loading动画消失
+                this.quillUpdateImg = false
+        },
+        // 上传图片失败
+        uploadError(res, file) {
+            // loading动画消失
+                this.quillUpdateImg = false
+                this.$message.error('图片插入失败')
+        },
         onEditorReady(editor) { // 准备编辑器
         },
         onEditorBlur(){}, // 失去焦点事件
@@ -62,7 +146,7 @@ export default {
                 this.myname = ''
                 this.mypass = ''
             }else{
-                console.log('你不是主人啊...')
+                this.$message.error('你不是主人啊...')
             }
         },
         // 获取用户列表
@@ -96,7 +180,7 @@ export default {
                     type: 'success'
                 });
             }else{
-                console.log('不要输入空的啊，兄弟...')
+                this.$message.error('不要输入空的啊，兄弟...')
             }
         }
     },
@@ -107,6 +191,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/deep/ .el-input{
+    margin: 12px 0;
+}
 @mixin same{
 background: transparent;
 padding: .2rem;
