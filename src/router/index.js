@@ -23,7 +23,7 @@ const appRouter = {
     },
     {
       path : '/some',
-      component : resolve => require(['@/components/some'],resolve)
+      component : resolve => require(['@/components/some'],resolve),
     },
     {
       path : '/game',

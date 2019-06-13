@@ -14,7 +14,6 @@
             <p>· 少即是多</p>
             <p>· 没有消息就是最好的消息</p>
             <p>· 音乐是一种生活方式</p> 
-            <p>· 花里胡哨</p>
             <img v-lazy="imgs[0]" title="风格简述"/>
         </div>
         <div class="some_cont">
@@ -94,9 +93,6 @@ export default {
                 require('../assets/280745.jpg'),
                 require('../assets/318553.jpg')
             ],
-            // img1 : require('../assets/323888.jpg'),
-            // img2 : require('../assets/280745.jpg'),
-            // img3 : require('../assets/318553.jpg'),
             currentPage : 1, // 当前评论页码
             pagesize : 10, // 每页评论显示的数量
             public_text : '发 布'
@@ -145,10 +141,6 @@ export default {
                 this.error_text = '评论为1-100的汉字、英文、数字、逗号、句号、感叹号、问号、分号还有空格哦'
                 this.error_name = ''
             }else{
-                // this.obj.push({
-                //     name : this.yourname,
-                //     commend : this.yourcommend  
-                // }) 
                  this.$http.post('api/reply',{params:{
                  name : that.yourname,
                  comment : that.yourcommend

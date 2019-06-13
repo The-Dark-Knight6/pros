@@ -12,7 +12,7 @@ module.exports = {
     proxyTable: {
       //解决跨域问题
       '/api':{
-        target:'http://localhost:8088',
+        target:'http://localhost:8888',
         changeOrigin:true,
         pathRewrite:{
           '^/api':''

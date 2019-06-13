@@ -36,6 +36,7 @@ export default {
       }
   },
   methods : {
+      //播放和暂停音乐
       play_mu(){
           var musi = document.querySelector('.mui')
           var pla = document.querySelector('.plays')
