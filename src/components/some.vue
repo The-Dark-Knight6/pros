@@ -65,7 +65,8 @@
             <p>{{error_name}}</p>
             <textarea name="comment" v-model="yourcommend" rows="3" maxlength="100" placeholder="您的想法"></textarea>
             <p>{{error_text}}</p>
-            <input type="button" round @click="com()" ref="add_commned" :plain="true" :value="public_text" class="button">
+            <input type="button" @click="com()" 
+            ref="add_commned" :plain="true" :value="public_text" :class="{button:hol}">
         </div>
     </div>
 </template>
@@ -88,6 +89,7 @@ export default {
             yourcommend : '',
             error_text : '',
             error_name :'',
+            hol : false, //改变发布按钮的style
             imgs : [
                 require('../assets/323888.jpg'),
                 require('../assets/280745.jpg'),
@@ -115,10 +117,12 @@ export default {
             if(ti == 0){
                 this.public_text = '发 布';
                 this.$refs.add_commned.disabled = '';
+                this.hol = false;
                 return ;
             }else{
                 this.$refs.add_commned.disabled = 'disabled';
                 this.public_text = `${ti}s后再次发布`;
+                this.hol = true;
                 ti --;
             }
             setTimeout(()=>{
@@ -232,15 +236,22 @@ export default {
             color: red;
             font-size: 12px;
         }
-        input.button{
+        input[type='button']{
+            border-radius: 20px;
+            padding: 9px 2px;
             display: inline-block;
-            padding: .07rem;
+            color: #FFF;
+            background-color: #409EFF;
+            border-color: #409EFF;
             width: 2rem;
             outline: none;
-            background: #b9d2f3;
-            border-radius: .2rem;
-            border: .01rem solid #a4a4fd;
-            margin-top: .2rem;
+            cursor:pointer;
+        }
+        input.button{
+            cursor: wait;
+            color: gray;
+            background-color: gainsboro;
+            border-color: gainsboro;
         }
         span{
             border-bottom: .06rem solid gainsboro;

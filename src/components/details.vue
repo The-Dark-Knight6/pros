@@ -28,7 +28,7 @@
             <p>{{error_name}}</p>
             <textarea name="comment" v-model="yourcommend" rows="3" maxlength="100" placeholder="您的想法"></textarea>
             <p>{{error_text}}</p>
-            <input type="button" class="button" ref="put_commend" round @click="com" :plain="true" :value="put_text">
+            <input type="button" :class="{button:hol}" ref="put_commend" @click="com" :plain="true" :value="put_text">
         </div>
     </div>    
 </template>
@@ -51,6 +51,7 @@ export default {
             yourcommend : '',
             error_text : '',
             error_name :'',
+            hol : false, //发布状态改变
             put_text : '发 布'
         }
     },
@@ -59,10 +60,12 @@ export default {
             if(t == 0){
                 this.put_text = '发 布';
                 this.$refs.put_commend.disabled = '';
+                this.hol = false;
                 return ;
             }else{
                 this.$refs.put_commend.disabled = 'disabled';
                 this.put_text = `${t}s后再次发布`;
+                this.hol = true;
                 t --;
             }
             setTimeout(() => {
@@ -202,17 +205,22 @@ $border_bor : .02rem solid #6896a3;
             color: red;
             font-size: 12px;
         }
-        input.button{
+        input[type="button"]{
+            border-radius: 20px;
+            padding: 9px 2px;
             display: inline-block;
-            padding: .07rem;
+            color: #FFF;
+            background-color: #409EFF;
+            border-color: #409EFF;
             width: 2rem;
             outline: none;
-            background: #b9d2f3;
-            border-radius: .2rem;
-            border: .01rem solid #a4a4fd;
-            margin-top: .2rem;
-            text-align: center;
-            cursor: pointer;
+            cursor:pointer;
+        }
+        input.button{
+            cursor: wait;
+            color: gray;
+            background-color: gainsboro;
+            border-color: gainsboro;
         }
         span{
             border-bottom: .06rem solid gainsboro;

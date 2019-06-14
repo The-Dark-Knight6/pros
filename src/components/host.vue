@@ -113,6 +113,7 @@ $border_bor : .02rem dotted #6896a3;
                 text-decoration: none;
             }
             &.hot_title:hover{
+                display: inline-block;
                 cursor: pointer;
                 color: rgb(55, 55, 231);
                 transition: .2s;
