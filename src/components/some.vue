@@ -35,6 +35,7 @@
             <p><a href="http://www.mvcat.com/music/" target="_blank">+ 全网音乐</a></p>
             <p><a href="http://yunkus.com/front-end-web-develoment/" target="_blank">+ 前端宝典</a></p>
             <p><a href="https://developer.mozilla.org/zh-CN/" target="_blank">+ MDN</a></p>
+            <p><a href="javascript:;" @click="cub">+ 掷硬币</a></p>
         </div>
         <div class="real_com">
             <span>真知灼见：</span><br>
@@ -63,7 +64,7 @@
             <span>留下足迹：</span><br>
             <input type="text" v-model="yourname" placeholder="您的昵称" maxlength="10">
             <p>{{error_name}}</p>
-            <textarea name="comment" v-model="yourcommend" rows="3" maxlength="100" placeholder="您的想法"></textarea>
+            <textarea name="comment" v-model="yourcommend" rows="5" maxlength="100" placeholder="您的想法"></textarea>
             <p>{{error_text}}</p>
             <input type="button" @click="com()" 
             ref="add_commned" :plain="true" :value="public_text" :class="{button:hol}">
@@ -101,6 +102,13 @@ export default {
         }
     },
     methods : {
+        cub(){
+            this.$router.push({
+                path : '/game',
+            })
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        },
         handleSizeChange(e){
             this.pagesize = e
         },

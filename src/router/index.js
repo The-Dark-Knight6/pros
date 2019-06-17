@@ -15,7 +15,7 @@ const appRouter = {
   routes : [
     {
       path : '/',
-      component : resolve => require(['@/components/host'],resolve)
+      component : resolve => require(['@/components/host'],resolve),
     },
     {
       path : '/poem',
@@ -27,7 +27,7 @@ const appRouter = {
     },
     {
       path : '/game',
-      component : resolve => require(['@/components/game'],resolve)
+      component : resolve => require(['@/components/game'],resolve),
     },
     {
       path : '/text',

@@ -26,7 +26,7 @@
             <span>留下足迹：</span><br>
             <input type="text" v-model="yourname" placeholder="您的昵称" maxlength="10">
             <p>{{error_name}}</p>
-            <textarea name="comment" v-model="yourcommend" rows="3" maxlength="100" placeholder="您的想法"></textarea>
+            <textarea name="comment" v-model="yourcommend" rows="5" maxlength="100" placeholder="您的想法"></textarea>
             <p>{{error_text}}</p>
             <input type="button" :class="{button:hol}" ref="put_commend" @click="com" :plain="true" :value="put_text">
         </div>

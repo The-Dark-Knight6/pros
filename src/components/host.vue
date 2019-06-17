@@ -19,7 +19,6 @@
             <p>^工具：vs code,winscp,xshell,navicat</p>
             <p>#文章：博客主要内容，记录点滴。</p>
             <p>#辞海：摘录诗、歌、词。</p>
-            <p>#娱乐：抛硬币</p>
             <p>#关于：尾声，提供评论、友链、彩蛋。</p>           
             <img v-lazy="img1" title="写在之前"/>
         </div>

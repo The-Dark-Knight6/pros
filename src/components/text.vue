@@ -64,7 +64,7 @@ export default {
                 }
             })
             // 点击回到页面顶部 防止滚动条停留在中间
-            document.body.scrollTop = 0
+            document.body.scrollTop = 0   
             document.documentElement.scrollTop = 0            
         }
     },
