@@ -2,6 +2,9 @@
 
 > A Vue.js project
 
+> This is the source of my blog website.
+
+> Welcome to pull requests.
 ## Build Setup
 
 ``` bash
