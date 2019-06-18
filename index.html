@@ -20,7 +20,7 @@
       <script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
       <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
       <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
-      <script src="https://cdn.bootcss.com/element-ui/2.3.3/index.js"></script>
+      <script src="https://unpkg.com/element-ui/lib/index.js"></script>
       <!-- vue懒加载引入 -->
       <script src="https://cdn.bootcss.com/vue-lazyload/1.2.6/vue-lazyload.js"></script>
     <div id="app"></div>
@@ -35,6 +35,20 @@
     </div>
   </body>
   <style>
+    ::-webkit-scrollbar {  /* 滚动条整体部分 */
+          width:7px;
+          margin-right:2px
+      }
+      ::-webkit-scrollbar-thumb {  /* 滑块 */
+          width:10px;
+          border-radius: 10px;
+          background: #a8d1fa;
+      }
+      ::-webkit-scrollbar-corner { /* 边角 */
+          width: 10px;
+          background-color: red;
+      }
+    /* 雪花的样式调整 */
   @keyframes mysnow {
 	0% { bottom: 100%; opacity: 0; }
 	50% { opacity: 1; transform: rotate(720deg);}

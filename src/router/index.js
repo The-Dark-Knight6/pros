@@ -40,6 +40,10 @@ const appRouter = {
     {
       path : '/details',
       component : resolve => require(['@/components/details'],resolve)
+    },
+    {
+      path  : '/kidding',
+      component : resolve => require(['@/components/kidding'],resolve)
     }
   ]
 }

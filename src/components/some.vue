@@ -6,7 +6,7 @@
             <p>Where：深圳市龙岗区甘李二路中海信创新产业城</p>
             <p>Who：个人</p>
             <p>What：简约博客</p>
-            <p>Why：学习全栈式编程、探索更多知识</p>  
+            <p>Why：JUST DO IT,TRY YOUR BEST.</p>  
         </div>
         <div id="container"></div> 
         <div class="some_cont">
@@ -35,7 +35,11 @@
             <p><a href="http://www.mvcat.com/music/" target="_blank">+ 全网音乐</a></p>
             <p><a href="http://yunkus.com/front-end-web-develoment/" target="_blank">+ 前端宝典</a></p>
             <p><a href="https://developer.mozilla.org/zh-CN/" target="_blank">+ MDN</a></p>
-            <p><a href="javascript:;" @click="cub">+ 掷硬币</a></p>
+        </div>
+        <div class="some_cont">
+            <span><big>玩</big>意儿：</span>
+            <p><a href="javascript:;" @click="cub(0)"># 掷硬币</a></p>
+            <p><a href="javascript:;" @click="cub(1)"># 神祗视角督查</a></p>
         </div>
         <div class="real_com">
             <span>真知灼见：</span><br>
@@ -102,10 +106,18 @@ export default {
         }
     },
     methods : {
-        cub(){
-            this.$router.push({
-                path : '/game',
-            })
+        // 关于切换不同的 “玩意儿” 页面
+        cub(e){
+            switch(e){
+                case 0 : this.$router.push({
+                    path : '/game',
+                })
+                break;
+                case 1 : this.$router.push({
+                    path : '/kidding'
+                })
+                break;
+            }    
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         },
@@ -137,6 +149,7 @@ export default {
                 this.control_com(ti)
             },1000)
         },
+        // 提交评论 和 相应反馈
         com(){
             var the_text = /^[\u4E00-\u9FA5A-Za-z0-9，。,.?？!！';\s]{1,100}$/
             var that = this 
@@ -271,7 +284,7 @@ export default {
             @include commend;
         }
         textarea{
-            width: 97%;
+            width: 95%;
             @include commend;
             resize: none; //禁止拖拉
         }

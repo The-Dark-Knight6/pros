@@ -64,11 +64,13 @@ ul{
 }
 #views{
   margin: .2rem 1.2rem;
+  overflow: hidden;
 }
 @media only screen and (min-device-width:480px){
   #views{
     margin: .2rem 30%;
     transition: .6s;
+    overflow: hidden;
   }
 }
 </style>
