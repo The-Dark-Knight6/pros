@@ -36,13 +36,6 @@
                 <u>我的心里住着一个，苍老的小孩，如果世界听不明白，对影子表白...</u>
             </el-collapse-item>
             </el-collapse>
-            <!-- <p>^环境：centos,nginx,nodejs</p>
-            <p>^框架：vue,express</p>
-            <p>^语言：h5,css3,ecmascript6,mysql</p>
-            <p>^工具：vs code,winscp,xshell,navicat</p>
-            <p>#文章：博客主要内容，记录点滴。</p>
-            <p>#辞海：摘录诗、歌、词。</p>
-            <p>#关于：尾声，提供评论、友链、彩蛋。</p>            -->
             <img v-lazy="img[0]" title="写在之前"/>
         </div>
         <div class="host_cont">
@@ -117,6 +110,9 @@ export default {
   }
   .el-carousel__item:nth-child(2n),.el-collapse-item__header,.el-carousel__item:nth-child(2n+1),.el-collapse-item__wrap {
     background-color: transparent;
+  }
+  .el-divider__text{
+      background-color: transparent;
   }
 </style>
 

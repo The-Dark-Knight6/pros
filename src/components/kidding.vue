@@ -113,27 +113,27 @@ export default {
                 desc: ''
             },
              activities: [{
-                content: '购买服务器（1687年牛顿发现了万有引力，我希望成为他那样的人。）',
-                timestamp: '2019-05-11 13:14',
-                size: 'large',
-                type: 'primary',
-                icon: 'el-icon-more'
+                    content: '购买服务器（大地丰盈，人间并不寂寥）',
+                    timestamp: '2019-05-11 13:14',
+                    size: 'large',
+                    type: 'primary',
+                    icon: 'el-icon-more'
                 }, {
-                content: '构建体系（1789年，华盛顿当选美国总统，我希望成为他那样的人。）',
-                timestamp: '2019-05-20 09:21',
-                color: '#0bbd87'
+                    content: '构建体系（不妨不妨，来日方长）',
+                    timestamp: '2019-05-20 09:21',
+                    color: '#0bbd87'
                 }, {
-                content: '备案申请成功（1879年，爱迪生发明了电灯泡，我希望成为他那样的人。）',
-                timestamp: '2019-05-31 08:16',
-                color:'yellow'
+                    content: '备案申请成功（世间 酸甜苦辣 若长良川）',
+                    timestamp: '2019-05-31 08:16',
+                    color:'yellow'
                 }, {
-                content: '网站上线（1905年爱因斯坦创立狭义相对论，我希望成为他那样的人。）',
-                timestamp: '2019-06-01 03:14',
-                color:'black'
+                    content: '网站上线（星芒万里，瞬时毫厘）',
+                    timestamp: '2019-06-01 03:14',
+                    color:'black'
                 },{
-                content: '继续维护更新（2019年我发布了个人博客，我希望成为我自己。）',
-                timestamp: '2019-06-11 20:59',
-                color:'red'
+                    content: '继续维护更新（身处黑暗 仰望光明 永存希望）',
+                    timestamp: '2019-06-11 20:59',
+                    color:'red'
                 }],
             rules: {
                 email : [
